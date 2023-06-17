@@ -1,6 +1,9 @@
 ﻿@url = http://localhost:5001
 
 ###
+GET {{url}}
+
+###
 POST {{url}}/slots
 Content-Type: application/json
 
