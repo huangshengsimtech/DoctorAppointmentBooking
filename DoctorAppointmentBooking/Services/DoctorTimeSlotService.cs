@@ -1,5 +1,6 @@
 ﻿using DoctorAppointmentBooking.Entities;
 using DoctorAppointmentBooking.Repositories;
+using DoctorAppointmentBooking.Services.Exceptions;
 
 namespace DoctorAppointmentBooking.Services
 {
@@ -14,7 +15,12 @@ namespace DoctorAppointmentBooking.Services
 
         public async Task Create(DoctorTimeSlot doctorTimeSlot)
         {
-            if (doctorTimeSlot.Cost == 0 || doctorTimeSlot.IsReserved == true || doctorTimeSlot.DoctorName == null)
+            if (string.IsNullOrEmpty(doctorTimeSlot.DoctorName))
+            {
+                throw new DoctorTimeSlotException();
+            }
+
+            if (doctorTimeSlot.Cost == 0 || doctorTimeSlot.IsReserved == true)
                 throw new NotImplementedException();
 
             await _doctorTimeSlotRepository.Add(doctorTimeSlot);

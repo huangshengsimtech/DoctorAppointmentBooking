@@ -1,5 +1,6 @@
 ﻿using DoctorAppointmentBooking.Entities;
 using DoctorAppointmentBooking.Repositories;
+using DoctorAppointmentBooking.Services.Exceptions;
 
 namespace DoctorAppointmentBooking.Services
 {
@@ -14,8 +15,10 @@ namespace DoctorAppointmentBooking.Services
 
         public async Task Create(Appointment appointment)
         {
-            if (appointment.PatientName == null)
-                throw new NotImplementedException();
+            if (string.IsNullOrEmpty(appointment.PatientName))
+            {
+                  throw new AppointmentException();
+            }
             
             await _appointmentRepository.Add(appointment);
         }
