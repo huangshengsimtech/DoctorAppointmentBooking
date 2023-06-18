@@ -1,12 +1,23 @@
 ﻿using DoctorAppointmentBooking.Entities;
+using DoctorAppointmentBooking.Repositories;
 
 namespace DoctorAppointmentBooking.Services
 {
     public class AppointmentService : IAppointmentService
     {
-        public Task Create(Appointment appointment)
+        private readonly IAppointmentRepository _appointmentRepository;
+
+        public AppointmentService(IAppointmentRepository appointmentRepository)
         {
-            throw new NotImplementedException();
+            _appointmentRepository = appointmentRepository;
+        }
+
+        public async Task Create(Appointment appointment)
+        {
+            if (appointment.PatientName == null)
+                throw new NotImplementedException();
+            
+            await _appointmentRepository.Add(appointment);
         }
     }
 }
