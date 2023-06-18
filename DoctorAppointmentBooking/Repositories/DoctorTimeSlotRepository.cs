@@ -1,13 +1,28 @@
-﻿using DoctorAppointmentBooking.Entities;
+﻿using DoctorAppointmentBooking.Database;
+using DoctorAppointmentBooking.Entities;
 
 namespace DoctorAppointmentBooking.Repositories
 {
     public class DoctorTimeSlotRepository : IDoctorTimeSlotRepository
     {
-        public Task Add(DoctorTimeSlot doctorTimeSlot)
+        private readonly BookingDatabase _db;
+
+        public DoctorTimeSlotRepository(BookingDatabase db)
         {
-            throw new NotImplementedException();
+            _db = db;
         }
+
+        public async Task Add(DoctorTimeSlot doctorTimeSlot)
+        {
+            _db.DoctorTimeSlots.Add(doctorTimeSlot);
+            await _db.SaveChangesAsync();
+        }
+
+
+        //public Task Add(DoctorTimeSlot doctorTimeSlot)
+        //{
+        //    throw new NotImplementedException();
+        //}
         //private readonly DoctorAppointmentBookingContext _context;
 
         //public DoctorTimeSlotRepository(DoctorAppointmentBookingContext context)
