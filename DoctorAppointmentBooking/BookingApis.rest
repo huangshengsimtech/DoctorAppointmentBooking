@@ -4,12 +4,16 @@
 GET {{url}}
 
 ###
-POST {{url}}/slots
+POST {{url}}/doctortimeslots
 Content-Type: application/json
 
 {
-    "doctorName": "John Smith",
-    "availableTime": "2021-01-01T09:00:00"
+    "Id": "12a54b1c-da8f-48e5-832f-c6f45fbe836b",
+    "Time": "2023-02-22T16:30:00",
+    "DoctorId": "d63b3de0-8bde-45f5-808b-73042ee6bb0d",
+    "DoctorName": "John Smith",
+    "IsReserved": false,
+    "Cost": 350
 }
 
 ###
@@ -17,7 +21,9 @@ POST {{url}}/appointments
 Content-Type: application/json
 
 {
-    "patientName": "Bob Johnson",
-    "slotId": "1",
-    "reservedTime": "2021-01-01T09:00:00"
+    "Id": "391c9281-83d4-4a56-b948-b25fecc94270",
+    "SlotId": "60d4427c-b956-4393-b186-f61afbbc79ed",
+    "PatientId": "74cc2acc-4a55-4208-904a-5ee090239f33",
+    "PatientName": "Bob Johnson",
+    "ReservedAt": "2023-01-31T09:00:00"
 }
