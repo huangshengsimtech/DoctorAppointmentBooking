@@ -29,6 +29,12 @@ namespace DoctorAppointmentBooking.Controllers
             await _doctorTimeSlotService.Create(doctorTimeSlot);
             return Ok("Doctor Time Slot Created..");
         }
+        [HttpGet("{doctorId}")]
+        public async Task<IActionResult> GetTimeSlotsByDoctorId(Guid doctorId)
+        {
+            var slots = await _doctorTimeSlotService.GetTimeSlotsByDoctorId(doctorId);
+            return Ok(slots);
+        }
         [HttpGet("available")]
         public async Task<IActionResult> GetAvailableSlots()
         {

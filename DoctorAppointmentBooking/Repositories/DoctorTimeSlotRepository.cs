@@ -18,6 +18,10 @@ namespace DoctorAppointmentBooking.Repositories
             _db.DoctorTimeSlots.Add(doctorTimeSlot);
             await _db.SaveChangesAsync();
         }
+        public async Task<List<DoctorTimeSlot>> GetByDoctorIdAsync(Guid doctorId)
+        {
+            return await _db.DoctorTimeSlots.Where(d => d.DoctorId == doctorId).ToListAsync();
+        }
         public async Task<List<DoctorTimeSlot>> GetAvailableTimeSlotsAsync()
         {
             return await _db.DoctorTimeSlots.Where(d => !d.IsReserved).ToListAsync();

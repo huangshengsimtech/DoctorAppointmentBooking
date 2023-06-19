@@ -25,6 +25,12 @@ namespace DoctorAppointmentBooking.Services
 
             await _doctorTimeSlotRepository.Add(doctorTimeSlot);
         }
+
+        public async Task<List<DoctorTimeSlot>> GetTimeSlotsByDoctorId(Guid doctorId)
+        {
+            return await _doctorTimeSlotRepository.GetByDoctorIdAsync(doctorId);
+        }
+
         public async Task<List<DoctorTimeSlot>> GetAvailableTimeSlots()
         {
             return await _doctorTimeSlotRepository.GetAvailableTimeSlotsAsync();
