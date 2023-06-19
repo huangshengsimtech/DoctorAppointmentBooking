@@ -17,12 +17,16 @@ Content-Type: application/json
 }
 
 ### 
-# @name getTimeSlotsByDoctorId
+# List slots by doctor's id.
 GET {{url}}/doctortimeslots/d63b3de0-8bde-45f5-808b-73042ee6bb0d
 
 ### 
-# @name getAvailableSlots
+# View all doctors' available (only) slots.
 GET {{url}}/doctortimeslots/available HTTP/1.1
+
+###
+# Reserve slot by IsReserved = true for specific slot id.
+PUT {{url}}/doctortimeslots/bc9414d0-875e-4a16-9f07-88908a466278/reserve
 
 ###
 POST {{url}}/appointments

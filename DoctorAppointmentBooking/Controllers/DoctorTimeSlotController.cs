@@ -41,5 +41,13 @@ namespace DoctorAppointmentBooking.Controllers
             var availableSlots = await _doctorTimeSlotService.GetAvailableTimeSlots();
             return Ok(availableSlots);
         }
+
+        [HttpPut("{id}/reserve")]
+        public async Task<IActionResult> Reserve(Guid id)
+        {
+            await _doctorTimeSlotService.ReserveTimeSlot(id);
+            return Ok("Doctor Time Slot Reserved..");
+        }
+
     }
 }

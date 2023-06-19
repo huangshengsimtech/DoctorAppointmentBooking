@@ -36,5 +36,9 @@ namespace DoctorAppointmentBooking.Services
             return await _doctorTimeSlotRepository.GetAvailableTimeSlotsAsync();
         }
 
+        public async Task ReserveTimeSlot(Guid id)
+        {
+            await _doctorTimeSlotRepository.UpdateDoctorTimeSlotReservedStatus(id);
+        }
     }
 }
