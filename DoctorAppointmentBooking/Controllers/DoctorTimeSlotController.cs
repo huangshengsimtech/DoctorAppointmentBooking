@@ -4,6 +4,7 @@ using DoctorAppointmentBooking.Services;
 
 namespace DoctorAppointmentBooking.Controllers
 {
+    [Controller]
     [Route("/doctortimeslots")]
     public class DoctorTimeSlotController : ControllerBase
     {
@@ -13,7 +14,7 @@ namespace DoctorAppointmentBooking.Controllers
         {
             _doctorTimeSlotService = doctorTimeSlotService;
         }
-
+        [HttpPost("create")]
         public async Task<IActionResult> Post([FromBody] DoctorTimeSlot doctorTimeSlot)
         {
             if (!ModelState.IsValid)
@@ -27,6 +28,12 @@ namespace DoctorAppointmentBooking.Controllers
 
             await _doctorTimeSlotService.Create(doctorTimeSlot);
             return Ok("Doctor Time Slot Created..");
+        }
+        [HttpGet("available")]
+        public async Task<IActionResult> GetAvailableSlots()
+        {
+            var availableSlots = await _doctorTimeSlotService.GetAvailableTimeSlots();
+            return Ok(availableSlots);
         }
     }
 }

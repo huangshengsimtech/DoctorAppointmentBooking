@@ -20,10 +20,15 @@ namespace DoctorAppointmentBooking.Services
                 throw new DoctorTimeSlotException();
             }
 
-            if (doctorTimeSlot.Cost == 0 || doctorTimeSlot.IsReserved == true)
+            if (doctorTimeSlot.Cost == 0)
                 throw new NotImplementedException();
 
             await _doctorTimeSlotRepository.Add(doctorTimeSlot);
         }
+        public async Task<List<DoctorTimeSlot>> GetAvailableTimeSlots()
+        {
+            return await _doctorTimeSlotRepository.GetAvailableTimeSlotsAsync();
+        }
+
     }
 }

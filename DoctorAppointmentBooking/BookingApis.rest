@@ -4,17 +4,21 @@
 GET {{url}}
 
 ###
-POST {{url}}/doctortimeslots
+POST {{url}}/doctortimeslots/create
 Content-Type: application/json
 
 {
-    "Id": "12a54b1c-da8f-48e5-832f-c6f45fbe836b",
-    "Time": "2023-02-22T16:30:00",
+    "Id": "3ac82ce2-49dc-4b2a-b586-6532b99e2ea1",
+    "Time": "2023-02-24T16:30:00",
     "DoctorId": "d63b3de0-8bde-45f5-808b-73042ee6bb0d",
     "DoctorName": "John Smith",
-    "IsReserved": false,
+    "IsReserved": true,
     "Cost": 350
 }
+
+### 
+# @name getAvailableSlots
+GET {{url}}/doctortimeslots/available HTTP/1.1
 
 ###
 POST {{url}}/appointments
