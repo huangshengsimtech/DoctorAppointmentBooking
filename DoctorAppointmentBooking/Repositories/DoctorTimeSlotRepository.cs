@@ -26,6 +26,10 @@ namespace DoctorAppointmentBooking.Repositories
         {
             return await _db.DoctorTimeSlots.Where(d => !d.IsReserved).ToListAsync();
         }
+        public async Task<bool> DoesTimeSlotExist(DateTime time)
+        {
+            return await _db.DoctorTimeSlots.AnyAsync(d => d.Time == time);
+        }
         public async Task UpdateDoctorTimeSlotReservedStatus(Guid id)
         {
             var doctorTimeSlot = await _db.DoctorTimeSlots.FindAsync(id);

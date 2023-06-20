@@ -8,5 +8,6 @@ namespace DoctorAppointmentBooking.Repositories
         public Task<List<DoctorTimeSlot>> GetByDoctorIdAsync(Guid doctorId);
         public Task<List<DoctorTimeSlot>> GetAvailableTimeSlotsAsync();
         public Task UpdateDoctorTimeSlotReservedStatus(Guid id);
+        Task<bool> DoesTimeSlotExist(DateTime time);
     }
 }

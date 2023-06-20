@@ -17,11 +17,17 @@ namespace DoctorAppointmentBooking.Services
         {
             if (string.IsNullOrEmpty(doctorTimeSlot.DoctorName))
             {
-                throw new DoctorTimeSlotException();
+                throw new DoctorNameException();
             }
 
-            if (doctorTimeSlot.Cost == 0)
-                throw new NotImplementedException();
+            if (doctorTimeSlot.Cost <= 0)
+            {
+                throw new DoctorTimeSlotCostException();
+            }
+            if (await _doctorTimeSlotRepository.DoesTimeSlotExist(doctorTimeSlot.Time))
+            {
+                throw new DoctorTimeSlotException();
+            }
 
             await _doctorTimeSlotRepository.Add(doctorTimeSlot);
         }

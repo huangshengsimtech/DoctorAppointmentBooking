@@ -9,6 +9,6 @@ namespace DoctorAppointmentBooking.Entities
         [Required] public Guid DoctorId { get; set; }
         [Required] public string DoctorName { get; set; }
         [Required] public bool IsReserved { get; set; }
-        [Required] public decimal Cost { get; set; }
+        [Required][Range(0.0, 1000000000.0)] public decimal Cost { get; set; }
     }
 }
