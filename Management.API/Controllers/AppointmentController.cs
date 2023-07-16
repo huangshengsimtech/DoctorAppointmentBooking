@@ -14,7 +14,7 @@ namespace DoctorAppointmentBooking.Controllers
             _appointmentService = appointmentService;
         }
 
-        public async Task<IActionResult> Post([FromBody] Appointment appointment)
+        public async Task<IActionResult> Post([FromBody] CreateAppointmentRequest appointment)
         {
             if (!ModelState.IsValid)
             {

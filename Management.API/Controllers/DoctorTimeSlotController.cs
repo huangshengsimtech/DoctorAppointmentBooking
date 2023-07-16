@@ -15,7 +15,7 @@ namespace DoctorAppointmentBooking.Controllers
             _doctorTimeSlotService = doctorTimeSlotService;
         }
         [HttpPost("create")]
-        public async Task<IActionResult> Post([FromBody] DoctorTimeSlot doctorTimeSlot)
+        public async Task<IActionResult> Post([FromBody] CreateDoctorTimeSlotRequest doctorTimeSlot)
         {
             if (!ModelState.IsValid)
             {
