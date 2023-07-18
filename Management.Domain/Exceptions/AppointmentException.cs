@@ -1,4 +1,4 @@
-﻿namespace DoctorAppointmentBooking.Services.Exceptions
+﻿namespace Management.Domain.Exceptions
 {
     [Serializable]
     internal class AppointmentException : Exception
