@@ -1,6 +1,6 @@
 ﻿using Management.Domain.Entities;
 
-namespace Management.Domain.Repositories
+namespace Management.Domain.Contracts
 {
     public interface IAppointmentRepository
     {
