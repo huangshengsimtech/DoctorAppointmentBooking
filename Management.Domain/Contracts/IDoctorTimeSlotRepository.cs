@@ -1,6 +1,6 @@
-﻿using DoctorAppointmentBooking.Entities;
+﻿using Management.Domain.Entities;
 
-namespace DoctorAppointmentBooking.Repositories
+namespace Management.Domain.Repositories
 {
     public interface IDoctorTimeSlotRepository
     {

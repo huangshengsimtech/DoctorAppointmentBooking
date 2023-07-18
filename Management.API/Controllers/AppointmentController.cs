@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Management.Application.Dtos;
 using Management.Application.UseCases;
-namespace DoctorAppointmentBooking.Controllers
+
+namespace Management.API.Controllers
 {
     [Route("/appointments")]
     public class AppointmentController : ControllerBase
