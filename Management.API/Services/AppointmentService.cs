@@ -1,6 +1,9 @@
-﻿using DoctorAppointmentBooking.Entities;
-using DoctorAppointmentBooking.Repositories;
-using DoctorAppointmentBooking.Services.Exceptions;
+﻿using Management.Domain.Entities;
+using Management.Infrastructure.Repositories;
+using Management.Domain.Exceptions;
+using Management.Shared;
+using Management.Domain.Contracts;
+
 
 namespace DoctorAppointmentBooking.Services
 {
@@ -17,9 +20,9 @@ namespace DoctorAppointmentBooking.Services
         {
             if (string.IsNullOrEmpty(appointment.PatientName))
             {
-                  throw new AppointmentException();
+                throw new AppointmentException();
             }
-            
+
             await _appointmentRepository.Add(appointment);
         }
     }

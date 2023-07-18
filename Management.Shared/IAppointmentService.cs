@@ -1,6 +1,6 @@
-﻿using DoctorAppointmentBooking.Entities;
+﻿using Management.Domain.Entities;
 
-namespace DoctorAppointmentBooking.Services
+namespace Management.Shared
 {
     public interface IAppointmentService
     {

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Management.Application.Dtos;
 using Management.Application.UseCases;
+using Management.Shared;
+using Management.Domain.Entities;
 
 namespace Management.API.Controllers
 {
@@ -15,7 +17,7 @@ namespace Management.API.Controllers
             _doctorTimeSlotService = doctorTimeSlotService;
         }
         [HttpPost("create")]
-        public async Task<IActionResult> Post([FromBody] CreateDoctorTimeSlotRequest doctorTimeSlot)
+        public async Task<IActionResult> Post([FromBody] DoctorTimeSlot doctorTimeSlot)
         {
             if (!ModelState.IsValid)
             {

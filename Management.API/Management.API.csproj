@@ -8,10 +8,14 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.8" />
+    <PackageReference Include="Uno.UI" Version="4.9.26" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Management.Application\Management.Application.csproj" />
+    <ProjectReference Include="..\Management.Domain\Management.Domain.csproj" />
+    <ProjectReference Include="..\Management.Infrastructure\Management.Infrastructure.csproj" />
+    <ProjectReference Include="..\Management.Shared\Management.Shared.csproj" />
   </ItemGroup>
 
 </Project>

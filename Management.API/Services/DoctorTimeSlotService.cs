@@ -1,8 +1,9 @@
-﻿using DoctorAppointmentBooking.Entities;
-using DoctorAppointmentBooking.Repositories;
-using DoctorAppointmentBooking.Services.Exceptions;
+﻿using Management.Domain.Entities;
+using Management.Domain.Exceptions;
+using Management.Domain.Contracts;
+using Management.Shared;
 
-namespace DoctorAppointmentBooking.Services
+namespace Management.API.Services
 {
     public class DoctorTimeSlotService : IDoctorTimeSlotService
     {

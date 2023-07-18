@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Management.Application.Dtos;
 using Management.Application.UseCases;
+using Management.Shared;
+using Management.Domain.Entities;
 
 namespace Management.API.Controllers
 {
@@ -14,7 +16,7 @@ namespace Management.API.Controllers
             _appointmentService = appointmentService;
         }
 
-        public async Task<IActionResult> Post([FromBody] CreateAppointmentRequest appointment)
+        public async Task<IActionResult> Post([FromBody] Appointment appointment)
         {
             if (!ModelState.IsValid)
             {
