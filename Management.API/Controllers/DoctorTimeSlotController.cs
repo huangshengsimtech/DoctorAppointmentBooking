@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using DoctorAppointmentBooking.Entities;
-using DoctorAppointmentBooking.Services;
-
+using Management.Application.Dtos;
+using Management.Application.UseCases;
 namespace DoctorAppointmentBooking.Controllers
 {
     [Controller]
