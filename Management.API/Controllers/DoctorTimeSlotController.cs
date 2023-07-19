@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Management.Application.Dtos;
 using Management.Application.UseCases;
-using Management.Shared;
-using Management.Domain.Entities;
+using Microsoft.Extensions.Logging;
 
 namespace Management.API.Controllers
 {
@@ -10,14 +9,18 @@ namespace Management.API.Controllers
     [Route("/doctortimeslots")]
     public class DoctorTimeSlotController : ControllerBase
     {
-        private readonly IDoctorTimeSlotService _doctorTimeSlotService;
+        private readonly CreateDoctorTimeSlot _createDoctorTimeSlot;
+        private readonly ILogger<DoctorTimeSlotController> _logger;
 
-        public DoctorTimeSlotController(IDoctorTimeSlotService doctorTimeSlotService)
+        public DoctorTimeSlotController(CreateDoctorTimeSlot createDoctorTimeSlot, ILogger<DoctorTimeSlotController> logger)
         {
-            _doctorTimeSlotService = doctorTimeSlotService;
+            _createDoctorTimeSlot = createDoctorTimeSlot;
+            _logger = logger;
         }
+
         [HttpPost("create")]
-        public async Task<IActionResult> Post([FromBody] DoctorTimeSlot doctorTimeSlot)
+
+        public async Task<IActionResult> Post([FromBody] CreateDoctorTimeSlotRequest doctorTimeSlot)
         {
             if (!ModelState.IsValid)
             {
@@ -25,31 +28,35 @@ namespace Management.API.Controllers
                     .SelectMany(value => value.Errors)
                     .Select(error => error.ErrorMessage)
                     .ToList();
+
                 return BadRequest(errors);
             }
 
-            await _doctorTimeSlotService.Create(doctorTimeSlot);
-            return Ok("Doctor Time Slot Created..");
-        }
-        [HttpGet("{doctorId}")]
-        public async Task<IActionResult> GetTimeSlotsByDoctorId(Guid doctorId)
-        {
-            var slots = await _doctorTimeSlotService.GetTimeSlotsByDoctorId(doctorId);
-            return Ok(slots);
-        }
-        [HttpGet("available")]
-        public async Task<IActionResult> GetAvailableSlots()
-        {
-            var availableSlots = await _doctorTimeSlotService.GetAvailableTimeSlots();
-            return Ok(availableSlots);
+            _logger.LogInformation("DoctorTimeSlot with ${DoctorName} requested", doctorTimeSlot.DoctorName);
+            await _createDoctorTimeSlot.Execute(doctorTimeSlot);
+
+            return Ok("DoctorTimeSlot Created..");
         }
 
-        [HttpPut("{id}/reserve")]
-        public async Task<IActionResult> Reserve(Guid id)
-        {
-            await _doctorTimeSlotService.ReserveTimeSlot(id);
-            return Ok("Doctor Time Slot Reserved..");
-        }
+        //[HttpGet("{doctorId}")]
+        //public async Task<IActionResult> GetTimeSlotsByDoctorId(Guid doctorId)
+        //{
+        //    var slots = await _doctorTimeSlotService.GetTimeSlotsByDoctorId(doctorId);
+        //    return Ok(slots);
+        //}
+        //[HttpGet("available")]
+        //public async Task<IActionResult> GetAvailableSlots()
+        //{
+        //    var availableSlots = await _doctorTimeSlotService.GetAvailableTimeSlots();
+        //    return Ok(availableSlots);
+        //}
+
+        //[HttpPut("{id}/reserve")]
+        //public async Task<IActionResult> Reserve(Guid id)
+        //{
+        //    await _doctorTimeSlotService.ReserveTimeSlot(id);
+        //    return Ok("Doctor Time Slot Reserved..");
+        //}
 
     }
 }

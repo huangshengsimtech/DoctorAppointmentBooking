@@ -1,20 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Management.Shared;
-using Management.Domain.Entities;
+using Management.Application.Dtos;
+using Management.Application.UseCases;
+using Microsoft.Extensions.Logging;
 
 namespace Management.API.Controllers
 {
     [Route("/appointments")]
     public class AppointmentController : ControllerBase
     {
-        private readonly IAppointmentService _appointmentService;
+        private readonly CreateAppointment _createAppointment;
+        private readonly ILogger<AppointmentController> _logger;
 
-        public AppointmentController(IAppointmentService appointmentService)
+        public AppointmentController(CreateAppointment createAppointment, ILogger<AppointmentController> logger)
         {
-            _appointmentService = appointmentService;
+            _createAppointment = createAppointment;
+            _logger = logger;
         }
-
-        public async Task<IActionResult> Post([FromBody] Appointment appointment)
+        public async Task<IActionResult> Post([FromBody] CreateAppointmentRequest appointment)
         {
             if (!ModelState.IsValid)
             {
@@ -22,10 +24,13 @@ namespace Management.API.Controllers
                     .SelectMany(value => value.Errors)
                     .Select(error => error.ErrorMessage)
                     .ToList();
+
                 return BadRequest(errors);
             }
 
-            await _appointmentService.Create(appointment);
+            _logger.LogInformation("Appointment with ${PatientName} requested", appointment.PatientName);
+            await _createAppointment.Execute(appointment);
+
             return Ok("Appointment Created..");
         }
     }
