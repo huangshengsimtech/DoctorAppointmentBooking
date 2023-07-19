@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Management.Application.Dtos;
-using Management.Application.UseCases;
 using Management.Shared;
 using Management.Domain.Entities;
 

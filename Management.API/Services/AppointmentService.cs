@@ -5,7 +5,7 @@ using Management.Shared;
 using Management.Domain.Contracts;
 
 
-namespace DoctorAppointmentBooking.Services
+namespace Management.API.Services
 {
     public class AppointmentService : IAppointmentService
     {

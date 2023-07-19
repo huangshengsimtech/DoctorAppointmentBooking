@@ -17,4 +17,10 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Authentication.API\Authentication.API.csproj" />
+    <ProjectReference Include="..\Booking.API\Booking.API.csproj" />
+    <ProjectReference Include="..\Management.API\Management.API.csproj" />
+  </ItemGroup>
+
 </Project>
