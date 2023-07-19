@@ -2,6 +2,7 @@
 using Management.Application.Dtos;
 using Management.Application.UseCases;
 using Microsoft.Extensions.Logging;
+using Management.Shared;
 
 namespace Management.API.Controllers
 {
@@ -9,12 +10,14 @@ namespace Management.API.Controllers
     [Route("/doctortimeslots")]
     public class DoctorTimeSlotController : ControllerBase
     {
+        private readonly IManagementModuleAPI _managementModuleAPI;
         private readonly CreateDoctorTimeSlot _createDoctorTimeSlot;
         private readonly ILogger<DoctorTimeSlotController> _logger;
 
-        public DoctorTimeSlotController(CreateDoctorTimeSlot createDoctorTimeSlot, ILogger<DoctorTimeSlotController> logger)
+        public DoctorTimeSlotController(CreateDoctorTimeSlot createDoctorTimeSlot, IManagementModuleAPI managementModuleAPI, ILogger<DoctorTimeSlotController> logger)
         {
             _createDoctorTimeSlot = createDoctorTimeSlot;
+            _managementModuleAPI = managementModuleAPI;
             _logger = logger;
         }
 
@@ -38,25 +41,25 @@ namespace Management.API.Controllers
             return Ok("DoctorTimeSlot Created..");
         }
 
-        //[HttpGet("{doctorId}")]
-        //public async Task<IActionResult> GetTimeSlotsByDoctorId(Guid doctorId)
-        //{
-        //    var slots = await _doctorTimeSlotService.GetTimeSlotsByDoctorId(doctorId);
-        //    return Ok(slots);
-        //}
-        //[HttpGet("available")]
-        //public async Task<IActionResult> GetAvailableSlots()
-        //{
-        //    var availableSlots = await _doctorTimeSlotService.GetAvailableTimeSlots();
-        //    return Ok(availableSlots);
-        //}
+        [HttpGet("{doctorId}")]
+        public async Task<IActionResult> GetTimeSlotsByDoctorId(Guid doctorId)
+        {
+            var slots = await _managementModuleAPI.GetTimeSlotsByDoctorId(doctorId);
+            return Ok(slots);
+        }
+        [HttpGet("available")]
+        public async Task<IActionResult> GetAvailableSlots()
+        {
+            var availableSlots = await _managementModuleAPI.GetAvailableTimeSlots();
+            return Ok(availableSlots);
+        }
 
-        //[HttpPut("{id}/reserve")]
-        //public async Task<IActionResult> Reserve(Guid id)
-        //{
-        //    await _doctorTimeSlotService.ReserveTimeSlot(id);
-        //    return Ok("Doctor Time Slot Reserved..");
-        //}
+        [HttpPut("{id}/reserve")]
+        public async Task<IActionResult> Reserve(Guid id)
+        {
+            await _managementModuleAPI.ReserveTimeSlot(id);
+            return Ok("Doctor Time Slot Reserved..");
+        }
 
     }
 }

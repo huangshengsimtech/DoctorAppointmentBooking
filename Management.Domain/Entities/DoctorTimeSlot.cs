@@ -10,7 +10,7 @@ namespace Management.Domain.Entities
         public DateTime Time { get; private set; }
         public Guid DoctorId { get; private set; }
         public string DoctorName { get; private set; }
-        public bool IsReserved { get; private set; }
+        public bool IsReserved { get; set; }
         public decimal Cost { get; private set; }
         private DoctorTimeSlot(Guid id, DateTime time, Guid doctorId, string doctorName, bool isReserved, decimal cost)
         {

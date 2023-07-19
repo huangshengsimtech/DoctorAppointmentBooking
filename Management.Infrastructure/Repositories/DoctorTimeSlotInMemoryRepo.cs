@@ -34,12 +34,16 @@ namespace Management.Infrastructure.Repositories
         {
             return Task.FromResult(DoctorTimeSlots.Any(d => d.Time == time));
         }
-        public  Task UpdateDoctorTimeSlotReservedStatus(Guid id)
+        public async Task UpdateDoctorTimeSlotReservedStatus(Guid id)
         {
-            // This is a dummy function for compiling purposes.
-            return Task.FromResult(DoctorTimeSlots.Any(d => d.Id == id));
+            // Search for the DoctorTimeSlot with the given id
+            DoctorTimeSlot doctorTimeSlot = DoctorTimeSlots.FirstOrDefault(slot => slot.Id == id);
 
+            // If a DoctorTimeSlot with the given id was found, update its IsReserved field
+            if (doctorTimeSlot != null)
+            {
+                doctorTimeSlot.IsReserved = true;
+            }
         }
     }
-
 }

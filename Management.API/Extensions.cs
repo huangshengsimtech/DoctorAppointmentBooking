@@ -14,10 +14,12 @@ namespace Management.API
         {
             services.AddTransient<CreateAppointment>()
                 .AddTransient<CreateDoctorTimeSlot>()
+                .AddTransient<GetDoctorTimeSlot>()
+                .AddTransient<GetDoctorAvailableTimeSlots>()
+                .AddTransient<BookDoctorTimeSlot>()
+                .AddTransient<IManagementModuleAPI, ManagementModuleAPI>()
                 .AddTransient<IAppointmentRepository, AppointmentInMemoryRepo>()
-                .AddTransient<IDoctorTimeSlotRepository, DoctorTimeSlotInMemoryRepo>()
-                .AddTransient<IAppointmentService, AppointmentService>()
-                .AddTransient<IDoctorTimeSlotService, DoctorTimeSlotService>();
+                .AddTransient<IDoctorTimeSlotRepository, DoctorTimeSlotInMemoryRepo>();
             return services;
         }
         public static IApplicationBuilder UseManagementModule(this IApplicationBuilder app)
