@@ -3,6 +3,10 @@
 ###
 GET {{url}}
 
+### 
+#  Module Management: Appointment 
+GET {{url}}/appointments HTTP/1.1
+
 ###
 # Step 1: Doctor John Smith creates a new time slot in DoctorTimeSlots database table:
 POST {{url}}/doctortimeslots/create

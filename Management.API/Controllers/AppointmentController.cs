@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Management.API.Controllers
 {
+    [ApiController]
     [Route("/appointments")]
     public class AppointmentController : ControllerBase
     {
@@ -16,6 +17,12 @@ namespace Management.API.Controllers
             _createAppointment = createAppointment;
             _logger = logger;
         }
+        public IActionResult Get()
+        {
+            return Ok("Appointment in Management Module");
+        }
+
+        [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateAppointmentRequest appointment)
         {
             if (!ModelState.IsValid)
