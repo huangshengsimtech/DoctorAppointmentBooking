@@ -8,7 +8,7 @@ namespace Authentication.API.Security
 {
     public static class AuthenticationExtension
     {
-        public static IServiceCollection AddEshopAuthentication(this IServiceCollection services,
+        public static IServiceCollection AddDoctorAppointmentBookingAuthentication(this IServiceCollection services,
             IConfiguration configuration)
         {
             // Add Authentication Service in program.cs

@@ -12,6 +12,7 @@ namespace DoctorAppointmentBooking
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services
+                .AddAuthenticationModule(builder.Configuration)
                 .AddManagementModule();
             //builder.Services
             //    .AddManagementModule()
