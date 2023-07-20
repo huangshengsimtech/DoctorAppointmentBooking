@@ -10,9 +10,10 @@ namespace Authentication.API
             IConfiguration configuration)
         {
             services.Configure<JwtOptions>(configuration.GetSection(JwtOptions.SectionName));
-            services
-                .AddDoctorAppointmentBookingAuthentication(configuration)
-                .AddTransient<JwtCreator>();
+
+            services.AddDoctorAppointmentBookingAuthentication(configuration)
+                    .AddTransient<JwtCreator>();
+
             return services;
         }
     }

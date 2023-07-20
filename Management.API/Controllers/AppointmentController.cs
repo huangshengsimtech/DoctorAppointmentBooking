@@ -2,6 +2,7 @@
 using Management.Application.Dtos;
 using Management.Application.UseCases;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Management.API.Controllers
 {
@@ -23,6 +24,7 @@ namespace Management.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Post([FromBody] CreateAppointmentRequest appointment)
         {
             if (!ModelState.IsValid)

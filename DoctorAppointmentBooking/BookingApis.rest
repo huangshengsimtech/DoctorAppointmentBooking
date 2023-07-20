@@ -7,6 +7,18 @@ GET {{url}}
 #  Module Management: Appointment 
 GET {{url}}/appointments HTTP/1.1
 
+### 
+#  Module AuthModule 
+GET {{url}}/AuthModule HTTP/1.1
+
+###
+POST {{url}}/AuthModule
+Content-Type: application/json
+
+{
+"UserName":"admin"
+}
+
 ###
 # Step 1: Doctor John Smith creates a new time slot in DoctorTimeSlots database table:
 POST {{url}}/doctortimeslots/create
@@ -46,3 +58,18 @@ Content-Type: application/json
     "PatientName": "Bob Johnson",
     "ReservedAt": "2023-01-31T09:00:00"
 }
+
+###
+POST {{url}}/appointments
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2ODk4NDUwNDUsImlzcyI6IkRvY3RvckFwcG9pbnRtZW50Qm9va2luZ19TZXJ2aWNlIiwiYXVkIjoiRG9jdG9yQXBwb2ludG1lbnRCb29raW5nX1NlcnZpY2UifQ.kp0S78lgRk2D3_71BhCRL41_gYeK8Cx3DK9MwATLhHw
+
+{
+    "Id": "1ea96882-cc3a-433f-bf43-d1ee75fdfbb5",
+    "SlotId": "314069e7-0e17-4b01-8fa3-467a8c7e53f1",
+    "PatientId": "74cc2acc-4a55-4208-904a-5ee090239f33",
+    "PatientName": "Bob Johnson",
+    "ReservedAt": "2023-01-31T09:00:00"
+}
+
+

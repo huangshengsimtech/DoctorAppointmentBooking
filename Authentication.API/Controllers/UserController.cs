@@ -20,7 +20,7 @@ namespace Authentication.API.Controllers
             return Ok("Authentication Module");
         }
 
-        [HttpPost("/login")]
+        [HttpPost]
         public Task<IActionResult> Post([FromBody] LoginRequest request)
         {
             if (request.UserName == "admin")
