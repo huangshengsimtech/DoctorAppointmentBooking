@@ -21,10 +21,6 @@
     <ProjectReference Include="..\Authentication.API\Authentication.API.csproj" />
     <ProjectReference Include="..\Booking.API\Booking.API.csproj" />
     <ProjectReference Include="..\Management.API\Management.API.csproj" />
-    <ProjectReference Include="..\Management.Application\Management.Application.csproj" />
-    <ProjectReference Include="..\Management.Domain\Management.Domain.csproj" />
-    <ProjectReference Include="..\Management.Infrastructure\Management.Infrastructure.csproj" />
-    <ProjectReference Include="..\Management.Shared\Management.Shared.csproj" />
   </ItemGroup>
 
 </Project>

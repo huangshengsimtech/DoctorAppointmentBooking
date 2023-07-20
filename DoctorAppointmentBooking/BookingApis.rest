@@ -10,7 +10,7 @@ Content-Type: application/json
 
 {
     "Id": "314069e7-0e17-4b01-8fa3-467a8c7e53f1",
-    "Time": "2023-02-25T16:30:00",
+    "Time": "2023-01-25T16:30:00",
     "DoctorId": "d63b3de0-8bde-45f5-808b-73042ee6bb0d",
     "DoctorName": "John Smith",
     "IsReserved": false,
