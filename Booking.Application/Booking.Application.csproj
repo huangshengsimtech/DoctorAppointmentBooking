@@ -7,8 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Booking.Application\Booking.Application.csproj" />
-    <ProjectReference Include="..\SharedKernel.Infrastructure\SharedKernel.Infrastructure.csproj" />
+    <ProjectReference Include="..\Management.Shared\Management.Shared.csproj" />
   </ItemGroup>
 
 </Project>

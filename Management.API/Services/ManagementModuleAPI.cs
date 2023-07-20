@@ -6,15 +6,31 @@ namespace Management.API.Services
 {
     public class ManagementModuleAPI : IManagementModuleAPI
     {
+        private readonly GetDoctorTimeSlotById _getDoctorTimeSlotById;
         private readonly GetDoctorTimeSlot _getDoctorTimeSlot;
         private readonly GetDoctorAvailableTimeSlots _getDoctorAvailableTimeSlots;
         private readonly BookDoctorTimeSlot _bookDoctorTimeSlot;
 
-        public ManagementModuleAPI(GetDoctorTimeSlot getDoctorTimeSlot, GetDoctorAvailableTimeSlots getDoctorAvailableTimeSlots, BookDoctorTimeSlot bookDoctorTimeSlot)
+        public ManagementModuleAPI(GetDoctorTimeSlotById getDoctorTimeSlotById, GetDoctorTimeSlot getDoctorTimeSlot, GetDoctorAvailableTimeSlots getDoctorAvailableTimeSlots, BookDoctorTimeSlot bookDoctorTimeSlot)
         {
+            _getDoctorTimeSlotById = getDoctorTimeSlotById;
             _getDoctorTimeSlot = getDoctorTimeSlot;
             _getDoctorAvailableTimeSlots = getDoctorAvailableTimeSlots;
             _bookDoctorTimeSlot = bookDoctorTimeSlot;
+        }
+
+        public async Task<DoctorTimeSlotDto?> GetTimeSlotById(Guid id)
+        {
+            var doctorTimeSlot = await _getDoctorTimeSlotById.Execute(id);
+            if (doctorTimeSlot == null) return null;
+            return new DoctorTimeSlotDto(
+                doctorTimeSlot.Id,
+                doctorTimeSlot.Time,
+                doctorTimeSlot.DoctorId,
+                doctorTimeSlot.DoctorName,
+                doctorTimeSlot.IsReserved,
+                doctorTimeSlot.Cost
+            );
         }
 
         public async Task<List<DoctorTimeSlot>> GetTimeSlotsByDoctorId(Guid doctorId)

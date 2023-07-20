@@ -14,6 +14,7 @@ namespace Management.API
         {
             services.AddTransient<CreateAppointment>()
                 .AddTransient<CreateDoctorTimeSlot>()
+                .AddTransient<GetDoctorTimeSlotById>()
                 .AddTransient<GetDoctorTimeSlot>()
                 .AddTransient<GetDoctorAvailableTimeSlots>()
                 .AddTransient<BookDoctorTimeSlot>()

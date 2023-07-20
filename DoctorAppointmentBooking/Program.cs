@@ -13,11 +13,8 @@ namespace DoctorAppointmentBooking
 
             builder.Services
                 .AddAuthenticationModule(builder.Configuration)
+                .AddBookingModule()
                 .AddManagementModule();
-            //builder.Services
-            //    .AddManagementModule()
-            //    .AddAuthenticationModule(builder.Configuration)
-            //    .AddBookingModule();
 
             builder.Services.AddControllers();
 
