@@ -1,47 +1,5 @@
 # DoctorAppointmentBooking
+# Work In Progress
+# Please give me one more day
 
-# API Testing Steps Using REST Client Script (see BookingApis.rest for detailed scripts):
 
-@url = http://localhost:5001
-
-###
-# Step 1: Doctor John Smith creates a new time slot in DoctorTimeSlots database table:
-POST {{url}}/doctortimeslots/create
-
-Content-Type: application/json
-
-{
-    "Id": "314069e7-0e17-4b01-8fa3-467a8c7e53f1",
-    "Time": "2023-02-25T16:30:00",
-    "DoctorId": "d63b3de0-8bde-45f5-808b-73042ee6bb0d",
-    "DoctorName": "John Smith",
-    "IsReserved": false,
-    "Cost": 100.0
-}
-
-### 
-# Step 2: Doctor John Smith views his own time slots by doctor id:
-GET {{url}}/doctortimeslots/d63b3de0-8bde-45f5-808b-73042ee6bb0d
-
-### 
-#  Step 3: Patient Bob Johnson views all doctors' available (only) slots:
-GET {{url}}/doctortimeslots/available
-
-###
-# Step 4: Patient Bob Johnson reserve one of Doctor John Smith's slot.
-## Step 4a: Update the selected slot "IsReserved" as true.
-PUT {{url}}/doctortimeslots/314069e7-0e17-4b01-8fa3-467a8c7e53f1/reserve
-
-###
-## Step 4b: Add a record in Appointments database table including the selected slot id, patient information and booking timestamp:
-POST {{url}}/appointments
-
-Content-Type: application/json
-
-{
-    "Id": "1ea96882-cc3a-433f-bf43-d1ee75fdfbb5",
-    "SlotId": "314069e7-0e17-4b01-8fa3-467a8c7e53f1",
-    "PatientId": "74cc2acc-4a55-4208-904a-5ee090239f33",
-    "PatientName": "Bob Johnson",
-    "ReservedAt": "2023-01-31T09:00:00"
-}
