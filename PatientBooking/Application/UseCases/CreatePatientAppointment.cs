@@ -1,9 +1,9 @@
-﻿using PatientBooking.Domain.Entities;
-using PatientBooking.Domain.Contracts;
-using PatientBooking.Domain.Exceptions;
-using PatientBooking.Application.Dtos;
+﻿using Booking.Domain.Entities;
+using Booking.Domain.Contracts;
+using Booking.Domain.Exceptions;
+using Booking.Application.Dtos;
 
-namespace PatientBooking.Application.UseCases
+namespace Booking.Application.UseCases
 {
     public class CreatePatientAppointment
     {

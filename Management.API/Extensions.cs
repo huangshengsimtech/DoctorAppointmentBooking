@@ -12,14 +12,13 @@ namespace Management.API
     {
         public static IServiceCollection AddManagementModule(this IServiceCollection services)
         {
-            services.AddTransient<CreateAppointment>()
+            services
                 .AddTransient<CreateDoctorTimeSlot>()
                 .AddTransient<GetDoctorTimeSlotById>()
                 .AddTransient<GetDoctorTimeSlot>()
                 .AddTransient<GetDoctorAvailableTimeSlots>()
                 .AddTransient<BookDoctorTimeSlot>()
                 .AddTransient<IManagementModuleAPI, ManagementModuleAPI>()
-                .AddTransient<IAppointmentRepository, AppointmentInMemoryRepo>()
                 .AddTransient<IDoctorTimeSlotRepository, DoctorTimeSlotInMemoryRepo>();
             return services;
         }

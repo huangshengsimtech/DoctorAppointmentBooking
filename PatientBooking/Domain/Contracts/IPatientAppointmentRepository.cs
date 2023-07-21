@@ -1,6 +1,6 @@
-﻿using PatientBooking.Domain.Entities;
+﻿using Booking.Domain.Entities;
 
-namespace PatientBooking.Domain.Contracts
+namespace Booking.Domain.Contracts
 {
     public interface IPatientAppointmentRepository
     {

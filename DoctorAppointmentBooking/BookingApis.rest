@@ -3,12 +3,10 @@
 ###
 GET {{url}}
 
-### 
-#  Module Management: Appointment 
-GET {{url}}/appointments HTTP/1.1
+
 
 ### 
-#  Module AuthModule 
+#  Authentication Module 
 GET {{url}}/AuthModule HTTP/1.1
 
 ###
@@ -34,48 +32,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iL
     "ReservedAt": "2023-01-31T09:00:00"
 }
 
-###
-# Step 1: Doctor John Smith creates a new time slot in DoctorTimeSlots database table:
-POST {{url}}/doctortimeslots/create
-Content-Type: application/json
-
-{
-    "Id": "314069e7-0e17-4b01-8fa3-467a8c7e53f1",
-    "Time": "2023-01-25T16:30:00",
-    "DoctorId": "d63b3de0-8bde-45f5-808b-73042ee6bb0d",
-    "DoctorName": "John Smith",
-    "IsReserved": false,
-    "Cost": 100.0
-}
-
-###
-# Step 2: Patient checks the detailed info of a slot by slot id:
-GET {{url}}/BookingInquiry
-Content-Type: application/json
-
-{
-    "AppointmentId": "1ea96882-cc3a-433f-bf43-d1ee75fdfbb5",
-    "SlotId": "314069e7-0e17-4b01-8fa3-467a8c7e53f1"
-}
-
 
 ### 
-#  Module Booking 
-GET {{url}}/Booking HTTP/1.1
-
-###
-# Add a Patient Appointment record in Patient Appointments database table including the selected slot id, patient information and booking timestamp:
-POST {{url}}/Booking
-Content-Type: application/json
-
-{
-    "Id": "1ea96882-cc3a-433f-bf43-d1ee75fdfbb5",
-    "SlotId": "314069e7-0e17-4b01-8fa3-467a8c7e53f1",
-    "PatientId": "74cc2acc-4a55-4208-904a-5ee090239f33",
-    "PatientName": "Bob Johnson",
-    "ReservedAt": "2023-01-31T09:00:00"
-}
-
+#  Management Module
 
 ###
 # Step 1: Doctor John Smith creates a new time slot in DoctorTimeSlots database table:
@@ -99,14 +58,16 @@ GET {{url}}/doctortimeslots/d63b3de0-8bde-45f5-808b-73042ee6bb0d
 #  Step 3: Patient Bob Johnson views all doctors' available (only) slots:
 GET {{url}}/doctortimeslots/available HTTP/1.1
 
-###
-# Step 4: Patient Bob Johnson reserve one of Doctor John Smith's slot.
-# Step 4a: Update the selected slot "IsReserved" as true.
-PUT {{url}}/doctortimeslots/314069e7-0e17-4b01-8fa3-467a8c7e53f1/reserve
+### 
+#  Booking Module
+GET {{url}}/Booking HTTP/1.1
 
 ###
-# Step 4b: Add a record in Appointments database table including the selected slot id, patient information and booking timestamp:
-POST {{url}}/appointments
+# Add a Patient Appointment record in Patient Appointments database table including the selected slot id, patient information and booking timestamp:
+# Patient Bob Johnson reserve one of Doctor John Smith's slot.
+# 1) In DoctorTimeSlots database table, set "IsReserved" of selected DoctorTimeSlot as true.
+# 2) In Appointments database table, add a record including the selected DoctorTimeSlot id, patient information and booking timestamp.
+POST {{url}}/Booking
 Content-Type: application/json
 
 {
@@ -117,5 +78,30 @@ Content-Type: application/json
     "ReservedAt": "2023-01-31T09:00:00"
 }
 
+###
+# Booking Inquiry Module
+###
+# Step 1: Doctor John Smith creates a new time slot in DoctorTimeSlots database table:
+POST {{url}}/doctortimeslots/create
+Content-Type: application/json
+
+{
+    "Id": "314069e7-0e17-4b01-8fa3-467a8c7e53f1",
+    "Time": "2023-01-25T16:30:00",
+    "DoctorId": "d63b3de0-8bde-45f5-808b-73042ee6bb0d",
+    "DoctorName": "John Smith",
+    "IsReserved": false,
+    "Cost": 100.0
+}
+
+###
+# Step 2: Patient checks the detailed info of a slot by slot id:
+GET {{url}}/BookingInquiry
+Content-Type: application/json
+
+{
+    "AppointmentId": "1ea96882-cc3a-433f-bf43-d1ee75fdfbb5",
+    "SlotId": "314069e7-0e17-4b01-8fa3-467a8c7e53f1"
+}
 
 

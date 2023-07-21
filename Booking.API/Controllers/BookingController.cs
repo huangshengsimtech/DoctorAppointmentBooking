@@ -1,24 +1,24 @@
-﻿using Booking.Application.UseCases;
-using Booking.Application.UseCases.Dtos;
+﻿using BookingInquiry.Application.UseCases;
+using BookingInquiry.Application.UseCases.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Booking.API.Controllers
+namespace BookingInquiry.API.Controllers
 {
     [ApiController]
     [Route("/BookingInquiry")]
 
     public class BookingController : ControllerBase
     {
-        private BookSlot _bookSlot;
+        private CheckDoctorTimeSlot _checkDoctorTimeSlot;
 
-        public BookingController(BookSlot bookSlot)
+        public BookingController(CheckDoctorTimeSlot checkDoctorTimeSlot)
         {
-            _bookSlot = bookSlot;
+            _checkDoctorTimeSlot = checkDoctorTimeSlot;
         }
         [HttpGet]
-        public async Task<IActionResult> GetTimeSlotById(BookSlotRequest request)
+        public async Task<IActionResult> GetTimeSlotById(DoctorTimeSlotRequest request)
         {
-            return Ok(await _bookSlot.Execute(request));
+            return Ok(await _checkDoctorTimeSlot.Execute(request));
         }
     }
 }

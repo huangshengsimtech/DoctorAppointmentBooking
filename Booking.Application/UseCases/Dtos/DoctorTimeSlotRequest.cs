@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Booking.Application.UseCases.Dtos
+namespace BookingInquiry.Application.UseCases.Dtos
 {
-    public class BookSlotRequest
+    public class DoctorTimeSlotRequest
     {
         [Required] public Guid AppointmentId { get; set; }
         [Required] public Guid SlotId { get; set; }

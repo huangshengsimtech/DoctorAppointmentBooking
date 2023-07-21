@@ -1,4 +1,4 @@
-﻿namespace PatientBooking.Domain.Exceptions
+﻿namespace Booking.Domain.Exceptions
 {
     [Serializable]
     internal class PatientNameEmptyException : Exception

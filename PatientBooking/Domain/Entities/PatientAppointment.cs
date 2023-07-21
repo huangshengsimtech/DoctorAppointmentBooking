@@ -1,4 +1,4 @@
-﻿namespace PatientBooking.Domain.Entities
+﻿namespace Booking.Domain.Entities
 {
     public class PatientAppointment
     {

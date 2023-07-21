@@ -1,7 +1,7 @@
-﻿using PatientBooking.Domain.Contracts;
-using PatientBooking.Domain.Entities;
+﻿using Booking.Domain.Contracts;
+using Booking.Domain.Entities;
 
-namespace PatientBooking.Infrastructure.Repositories
+namespace Booking.Infrastructure.Repositories
 {
     public class PatientAppointmentInMemoryRepo : IPatientAppointmentRepository
     {

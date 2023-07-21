@@ -1,10 +1,10 @@
-﻿using PatientBooking.Application.UseCases;
-using PatientBooking.Application.Dtos;
+﻿using Booking.Application.UseCases;
+using Booking.Application.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace PatientBooking.API.Controllers
+namespace Booking.API.Controllers
 {
     [ApiController]
     [Route("/Booking")]
@@ -12,11 +12,12 @@ namespace PatientBooking.API.Controllers
     public class PatientAppointmentController : ControllerBase
     {
         private readonly CreatePatientAppointment _createPatientAppointment;
+        private readonly BookDoctorTimeSlotById _bookDoctorTimeSlotById;
         private readonly ILogger<PatientAppointmentController> _logger;
-
-        public PatientAppointmentController(CreatePatientAppointment createPatientAppointment, ILogger<PatientAppointmentController> logger)
+        public PatientAppointmentController(CreatePatientAppointment createPatientAppointment, BookDoctorTimeSlotById bookDoctorTimeSlotById, ILogger<PatientAppointmentController> logger)
         {
             _createPatientAppointment = createPatientAppointment;
+            _bookDoctorTimeSlotById = bookDoctorTimeSlotById;
             _logger = logger;
         }
         public IActionResult Get()
@@ -39,6 +40,9 @@ namespace PatientBooking.API.Controllers
             }
 
             _logger.LogInformation("Appointment with ${PatientName} requested", createPatientAppointmentRequest.PatientName);
+
+            await _bookDoctorTimeSlotById.Execute(createPatientAppointmentRequest.SlotId);
+
             await _createPatientAppointment.Execute(createPatientAppointmentRequest);
 
             return Ok("Patient Appointment Created...");

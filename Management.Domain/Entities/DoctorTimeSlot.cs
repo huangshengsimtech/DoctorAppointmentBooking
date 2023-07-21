@@ -44,9 +44,9 @@ namespace Management.Domain.Entities
         }
 
     }
-    //public interface DomainEvent
-    //{
-    //}
+    public interface DomainEvent
+    {
+    }
 
     public record DoctorTimeSlotCreated(Guid Id, Guid DoctorId) : DomainEvent;
 
