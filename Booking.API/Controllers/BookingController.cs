@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Booking.API.Controllers
 {
     [ApiController]
-    [Route("/booking")]
+    [Route("/BookingInquiry")]
 
     public class BookingController : ControllerBase
     {
@@ -15,18 +15,10 @@ namespace Booking.API.Controllers
         {
             _bookSlot = bookSlot;
         }
-
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> GetTimeSlotById(BookSlotRequest request)
         {
-            return Ok("Booking Module");
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Book(BookSlotRequest request)
-        {
-            await _bookSlot.Execute(request);
-            return Ok("Time Slot Booked!");
+            return Ok(await _bookSlot.Execute(request));
         }
     }
 }

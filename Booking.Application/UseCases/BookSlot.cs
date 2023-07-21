@@ -11,19 +11,9 @@ namespace Booking.Application.UseCases
         {
             _managementModuleAPI = managementModuleAPI;
         }
-
-        public Task Execute(BookSlotRequest request)
+        public async Task<DoctorTimeSlotDto?> Execute(BookSlotRequest request)
         {
-            var timeSlot = _managementModuleAPI.GetTimeSlotById(request.SlotId);
-            if (timeSlot == null)
-                throw new TimeSlotNotFoundException();
-
-            Console.Write("Selected Time Slot.");
-            return Task.CompletedTask;
+            return await _managementModuleAPI.GetTimeSlotById(request.SlotId); 
         }
-    }
-
-    public class TimeSlotNotFoundException : Exception
-    {
     }
 }

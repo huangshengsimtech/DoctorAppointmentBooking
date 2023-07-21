@@ -1,13 +1,13 @@
 ﻿using PatientBooking.Application.UseCases;
-using PatientBooking.Controllers.Dtos;
+using PatientBooking.Application.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace PatientBooking.Controllers
+namespace PatientBooking.API.Controllers
 {
     [ApiController]
-    [Route("/appointments")]
+    [Route("/PatientBooking")]
 
     public class PatientAppointmentController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace PatientBooking.Controllers
         }
         public IActionResult Get()
         {
-            return Ok("Appointment in Management Module");
+            return Ok("PatientBooking Module!");
         }
 
         [HttpPost]

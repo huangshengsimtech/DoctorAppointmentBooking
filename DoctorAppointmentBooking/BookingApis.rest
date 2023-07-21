@@ -34,20 +34,35 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iL
     "ReservedAt": "2023-01-31T09:00:00"
 }
 
+###
+# Step 1: Doctor John Smith creates a new time slot in DoctorTimeSlots database table:
+POST {{url}}/doctortimeslots/create
+Content-Type: application/json
 
-### 
-#  Module Booking 
-GET {{url}}/booking HTTP/1.1
+{
+    "Id": "314069e7-0e17-4b01-8fa3-467a8c7e53f1",
+    "Time": "2023-01-25T16:30:00",
+    "DoctorId": "d63b3de0-8bde-45f5-808b-73042ee6bb0d",
+    "DoctorName": "John Smith",
+    "IsReserved": false,
+    "Cost": 100.0
+}
 
 ###
-# Booking a slot:
-POST {{url}}/booking
+# Step 2: Patient checks the detailed info of a slot by slot id:
+GET {{url}}/BookingInquiry
 Content-Type: application/json
 
 {
     "AppointmentId": "1ea96882-cc3a-433f-bf43-d1ee75fdfbb5",
     "SlotId": "314069e7-0e17-4b01-8fa3-467a8c7e53f1"
 }
+
+
+### 
+#  Module PatientBooking 
+GET {{url}}/PatientBooking HTTP/1.1
+
 
 
 ###

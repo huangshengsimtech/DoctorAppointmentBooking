@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PatientBooking.Controllers.Dtos
+namespace PatientBooking.Application.Dtos
 {
     public class CreatePatientAppointmentRequest
     {

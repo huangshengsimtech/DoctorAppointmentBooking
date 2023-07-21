@@ -1,7 +1,7 @@
 ﻿using PatientBooking.Domain.Entities;
 using PatientBooking.Domain.Contracts;
 using PatientBooking.Domain.Exceptions;
-using PatientBooking.Controllers.Dtos;
+using PatientBooking.Application.Dtos;
 
 namespace PatientBooking.Application.UseCases
 {
