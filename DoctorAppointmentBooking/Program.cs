@@ -1,7 +1,7 @@
 using Authentication.API;
 using Management.API;
 using Booking.API;
-
+using PatientBooking;
 
 namespace DoctorAppointmentBooking
 {
@@ -14,6 +14,7 @@ namespace DoctorAppointmentBooking
             builder.Services
                 .AddAuthenticationModule(builder.Configuration)
                 .AddBookingModule()
+                .AddPatientBookingModule()
                 .AddManagementModule();
 
             builder.Services.AddControllers();
