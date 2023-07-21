@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace PatientBooking.API.Controllers
 {
     [ApiController]
-    [Route("/PatientBooking")]
+    [Route("/Booking")]
 
     public class PatientAppointmentController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace PatientBooking.API.Controllers
         }
         public IActionResult Get()
         {
-            return Ok("PatientBooking Module!");
+            return Ok("Booking Module!");
         }
 
         [HttpPost]
@@ -41,7 +41,7 @@ namespace PatientBooking.API.Controllers
             _logger.LogInformation("Appointment with ${PatientName} requested", createPatientAppointmentRequest.PatientName);
             await _createPatientAppointment.Execute(createPatientAppointmentRequest);
 
-            return Ok("Appointment Created..");
+            return Ok("Patient Appointment Created...");
         }
     }
 

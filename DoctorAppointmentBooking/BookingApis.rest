@@ -60,9 +60,21 @@ Content-Type: application/json
 
 
 ### 
-#  Module PatientBooking 
-GET {{url}}/PatientBooking HTTP/1.1
+#  Module Booking 
+GET {{url}}/Booking HTTP/1.1
 
+###
+# Add a Patient Appointment record in Patient Appointments database table including the selected slot id, patient information and booking timestamp:
+POST {{url}}/Booking
+Content-Type: application/json
+
+{
+    "Id": "1ea96882-cc3a-433f-bf43-d1ee75fdfbb5",
+    "SlotId": "314069e7-0e17-4b01-8fa3-467a8c7e53f1",
+    "PatientId": "74cc2acc-4a55-4208-904a-5ee090239f33",
+    "PatientName": "Bob Johnson",
+    "ReservedAt": "2023-01-31T09:00:00"
+}
 
 
 ###
