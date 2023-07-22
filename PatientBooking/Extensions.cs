@@ -9,8 +9,11 @@ namespace Booking
     {
         public static IServiceCollection AddBookingModule(this IServiceCollection services)
         {
-            services.AddTransient<CreatePatientAppointment>()
+            services
                 .AddTransient<BookDoctorTimeSlotById>()
+                .AddTransient<CreatePatientAppointment>()
+                .AddTransient<GetBookedDoctorTimeSlotById>()
+                .AddTransient<SendAppointmentConfirmationNotification>()
                 .AddTransient<IPatientAppointmentRepository, PatientAppointmentInMemoryRepo>();
             return services;
         }

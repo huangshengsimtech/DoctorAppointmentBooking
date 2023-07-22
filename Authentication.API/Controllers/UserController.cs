@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Authentication.API.Controllers
 {
-    [Route("/AuthModule")]
+    [Route("/authentication")]
     public class UserController : ControllerBase
     {
         private readonly JwtCreator _jwtCreator;
@@ -20,7 +20,8 @@ namespace Authentication.API.Controllers
             return Ok("Authentication Module");
         }
 
-        [HttpPost]
+        [HttpPost("login")]
+
         public Task<IActionResult> Post([FromBody] LoginRequest request)
         {
             if (request.UserName == "admin")

@@ -13,11 +13,16 @@ namespace Booking.API.Controllers
     {
         private readonly CreatePatientAppointment _createPatientAppointment;
         private readonly BookDoctorTimeSlotById _bookDoctorTimeSlotById;
+        private readonly SendAppointmentConfirmationNotification _sendAppointmentConfirmationNotification;
         private readonly ILogger<PatientAppointmentController> _logger;
-        public PatientAppointmentController(CreatePatientAppointment createPatientAppointment, BookDoctorTimeSlotById bookDoctorTimeSlotById, ILogger<PatientAppointmentController> logger)
+        public PatientAppointmentController(CreatePatientAppointment createPatientAppointment, 
+                                            BookDoctorTimeSlotById bookDoctorTimeSlotById,
+                                            SendAppointmentConfirmationNotification sendAppointmentConfirmationNotification,
+                                            ILogger<PatientAppointmentController> logger)
         {
             _createPatientAppointment = createPatientAppointment;
             _bookDoctorTimeSlotById = bookDoctorTimeSlotById;
+            _sendAppointmentConfirmationNotification = sendAppointmentConfirmationNotification;
             _logger = logger;
         }
 
@@ -27,7 +32,7 @@ namespace Booking.API.Controllers
             return Ok("Booking Module!");
         }
 
-        [HttpPost]
+        [HttpPost("create-patient-appointment")]
         [Authorize]
         public async Task<IActionResult> Post([FromBody] CreatePatientAppointmentRequest createPatientAppointmentRequest)
         {
@@ -46,6 +51,8 @@ namespace Booking.API.Controllers
             await _bookDoctorTimeSlotById.Execute(createPatientAppointmentRequest.SlotId);
 
             await _createPatientAppointment.Execute(createPatientAppointmentRequest);
+
+            await _sendAppointmentConfirmationNotification.Execute(createPatientAppointmentRequest);
 
             return Ok("Patient Appointment Created...");
         }

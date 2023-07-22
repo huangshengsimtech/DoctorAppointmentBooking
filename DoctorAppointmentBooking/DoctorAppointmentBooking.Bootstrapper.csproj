@@ -21,6 +21,7 @@
     <ProjectReference Include="..\Authentication.API\Authentication.API.csproj" />
     <ProjectReference Include="..\Booking.API\BookingInquiry.API.csproj" />
     <ProjectReference Include="..\Management.API\Management.API.csproj" />
+    <ProjectReference Include="..\Notification.API\Notification.API.csproj" />
     <ProjectReference Include="..\PatientBooking\Booking.csproj" />
   </ItemGroup>
 

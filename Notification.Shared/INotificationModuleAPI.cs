@@ -2,15 +2,15 @@
 {
     public interface INotificationModuleAPI
     {
-        Task<DoctorTimeSlotDto?> NotifyReservedTimeSlotById(Guid id);
+        Task CreateNotification(AppointmentConfirmationDto appointmentConfirmationDto);
     }
 
-    public record DoctorTimeSlotDto(
-        Guid Id,
-        DateTime Time,
+    public record AppointmentConfirmationDto(
+        Guid SlotId,
         Guid DoctorId,
+        Guid PatientId,
         string DoctorName,
-        bool IsReserved,
-        decimal Cost
+        string PatientName,
+        DateTime Time
     );
 }

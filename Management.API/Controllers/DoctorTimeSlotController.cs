@@ -32,7 +32,7 @@ namespace Management.API.Controllers
             return Ok("Management Module!");
         }
 
-        [HttpPost("create")]
+        [HttpPost("create-doctor-time-slot")]
         [Authorize]
         public async Task<IActionResult> Post([FromBody] CreateDoctorTimeSlotRequest doctorTimeSlot)
         {
@@ -52,13 +52,13 @@ namespace Management.API.Controllers
             return Ok("DoctorTimeSlot Created..");
         }
 
-        [HttpGet("{doctorId}")]
+        [HttpGet("get-time-slots-by-doctor-id/{doctorId}")]
         public async Task<IActionResult> GetTimeSlotsByDoctorId(Guid doctorId)
         {
             var slots = await _getDoctorTimeSlot.Execute(doctorId);
             return Ok(slots);
         }
-        [HttpGet("available")]
+        [HttpGet("get-doctor-available-time-slots")]
         public async Task<IActionResult> GetAvailableSlots()
         {
             var availableSlots = await _getDoctorAvailableTimeSlots.Execute();
