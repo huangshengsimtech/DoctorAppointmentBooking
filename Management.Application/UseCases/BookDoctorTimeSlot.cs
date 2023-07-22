@@ -1,5 +1,4 @@
 ﻿using Management.Domain.Contracts;
-using Management.Domain.Entities;
 
 namespace Management.Application.UseCases
 {

@@ -1,15 +1,9 @@
-﻿using Management.Domain.Entities;
-
-namespace Management.Shared
+﻿namespace Management.Shared
 {
     public interface IManagementModuleAPI
     {
-        Task<DoctorTimeSlotDto?> GetTimeSlotById(Guid id);
-
-
-        public Task<List<DoctorTimeSlot>> GetTimeSlotsByDoctorId(Guid doctorId);
-        public Task<List<DoctorTimeSlot>> GetAvailableTimeSlots();
         public Task ReserveTimeSlot(Guid id);
+        Task<DoctorTimeSlotDto?> GetTimeSlotById(Guid id);
     }
 
     public record DoctorTimeSlotDto(

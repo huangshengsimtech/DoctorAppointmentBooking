@@ -1,28 +1,39 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Management.Application.Dtos;
+﻿using Management.Application.Dtos;
 using Management.Application.UseCases;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Management.Shared;
 
 namespace Management.API.Controllers
 {
-    [Controller]
-    [Route("/doctortimeslots")]
+    [ApiController]
+    [Route("/management")]
     public class DoctorTimeSlotController : ControllerBase
     {
-        private readonly IManagementModuleAPI _managementModuleAPI;
         private readonly CreateDoctorTimeSlot _createDoctorTimeSlot;
+        private readonly GetDoctorTimeSlot _getDoctorTimeSlot;
+        private readonly GetDoctorAvailableTimeSlots _getDoctorAvailableTimeSlots;
         private readonly ILogger<DoctorTimeSlotController> _logger;
 
-        public DoctorTimeSlotController(CreateDoctorTimeSlot createDoctorTimeSlot, IManagementModuleAPI managementModuleAPI, ILogger<DoctorTimeSlotController> logger)
+        public DoctorTimeSlotController(CreateDoctorTimeSlot createDoctorTimeSlot,
+                                        GetDoctorTimeSlot getDoctorTimeSlot,
+                                        GetDoctorAvailableTimeSlots getDoctorAvailableTimeSlots,
+                                        ILogger<DoctorTimeSlotController> logger)
         {
             _createDoctorTimeSlot = createDoctorTimeSlot;
-            _managementModuleAPI = managementModuleAPI;
+            _getDoctorTimeSlot = getDoctorTimeSlot;
+            _getDoctorAvailableTimeSlots = getDoctorAvailableTimeSlots;
             _logger = logger;
         }
 
-        [HttpPost("create")]
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok("Management Module!");
+        }
 
+        [HttpPost("create")]
+        [Authorize]
         public async Task<IActionResult> Post([FromBody] CreateDoctorTimeSlotRequest doctorTimeSlot)
         {
             if (!ModelState.IsValid)
@@ -44,22 +55,14 @@ namespace Management.API.Controllers
         [HttpGet("{doctorId}")]
         public async Task<IActionResult> GetTimeSlotsByDoctorId(Guid doctorId)
         {
-            var slots = await _managementModuleAPI.GetTimeSlotsByDoctorId(doctorId);
+            var slots = await _getDoctorTimeSlot.Execute(doctorId);
             return Ok(slots);
         }
         [HttpGet("available")]
         public async Task<IActionResult> GetAvailableSlots()
         {
-            var availableSlots = await _managementModuleAPI.GetAvailableTimeSlots();
+            var availableSlots = await _getDoctorAvailableTimeSlots.Execute();
             return Ok(availableSlots);
         }
-
-        [HttpPut("{id}/reserve")]
-        public async Task<IActionResult> Reserve(Guid id)
-        {
-            await _managementModuleAPI.ReserveTimeSlot(id);
-            return Ok("Doctor Time Slot Reserved..");
-        }
-
     }
 }

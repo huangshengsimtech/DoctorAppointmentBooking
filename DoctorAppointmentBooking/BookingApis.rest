@@ -3,8 +3,6 @@
 ###
 GET {{url}}
 
-
-
 ### 
 #  Authentication Module 
 GET {{url}}/AuthModule HTTP/1.1
@@ -19,27 +17,14 @@ Content-Type: application/json
 }
 
 ###
-# Use the token to access the API:
-POST {{url}}/appointments
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2ODk4NDUwNDUsImlzcyI6IkRvY3RvckFwcG9pbnRtZW50Qm9va2luZ19TZXJ2aWNlIiwiYXVkIjoiRG9jdG9yQXBwb2ludG1lbnRCb29raW5nX1NlcnZpY2UifQ.kp0S78lgRk2D3_71BhCRL41_gYeK8Cx3DK9MwATLhHw
-
-{
-    "Id": "1ea96882-cc3a-433f-bf43-d1ee75fdfbb5",
-    "SlotId": "314069e7-0e17-4b01-8fa3-467a8c7e53f1",
-    "PatientId": "74cc2acc-4a55-4208-904a-5ee090239f33",
-    "PatientName": "Bob Johnson",
-    "ReservedAt": "2023-01-31T09:00:00"
-}
-
-
-### 
 #  Management Module
+GET {{url}}/management HTTP/1.1
 
 ###
 # Step 1: Doctor John Smith creates a new time slot in DoctorTimeSlots database table:
-POST {{url}}/doctortimeslots/create
+POST {{url}}/management/create
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2ODk5OTUwNTEsImlzcyI6IkRvY3RvckFwcG9pbnRtZW50Qm9va2luZ19TZXJ2aWNlIiwiYXVkIjoiRG9jdG9yQXBwb2ludG1lbnRCb29raW5nX1NlcnZpY2UifQ.EH3E-yJpreWhPV8_mW23z1evNOCD1T5rAlchg7BYXOQ
 
 {
     "Id": "314069e7-0e17-4b01-8fa3-467a8c7e53f1",
@@ -52,11 +37,11 @@ Content-Type: application/json
 
 ### 
 # Step 2: Doctor John Smith views his own time slots by doctor id:
-GET {{url}}/doctortimeslots/d63b3de0-8bde-45f5-808b-73042ee6bb0d
+GET {{url}}/management/d63b3de0-8bde-45f5-808b-73042ee6bb0d
 
 ### 
 #  Step 3: Patient Bob Johnson views all doctors' available (only) slots:
-GET {{url}}/doctortimeslots/available HTTP/1.1
+GET {{url}}/management/available HTTP/1.1
 
 ### 
 #  Booking Module
@@ -67,8 +52,10 @@ GET {{url}}/Booking HTTP/1.1
 # Patient Bob Johnson reserve one of Doctor John Smith's slot.
 # 1) In DoctorTimeSlots database table, set "IsReserved" of selected DoctorTimeSlot as true.
 # 2) In Appointments database table, add a record including the selected DoctorTimeSlot id, patient information and booking timestamp.
-POST {{url}}/Booking
+# Use the token to access the API:
+POST {{url}}/booking
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2ODk5OTUxNzgsImlzcyI6IkRvY3RvckFwcG9pbnRtZW50Qm9va2luZ19TZXJ2aWNlIiwiYXVkIjoiRG9jdG9yQXBwb2ludG1lbnRCb29raW5nX1NlcnZpY2UifQ.sMxMvzhXrv4Bnd-gDAflrEq6D6ymuM8qUXUyrHD3v88
 
 {
     "Id": "1ea96882-cc3a-433f-bf43-d1ee75fdfbb5",
@@ -80,24 +67,14 @@ Content-Type: application/json
 
 ###
 # Booking Inquiry Module
-###
-# Step 1: Doctor John Smith creates a new time slot in DoctorTimeSlots database table:
-POST {{url}}/doctortimeslots/create
-Content-Type: application/json
-
-{
-    "Id": "314069e7-0e17-4b01-8fa3-467a8c7e53f1",
-    "Time": "2023-01-25T16:30:00",
-    "DoctorId": "d63b3de0-8bde-45f5-808b-73042ee6bb0d",
-    "DoctorName": "John Smith",
-    "IsReserved": false,
-    "Cost": 100.0
-}
+GET {{url}}/booking-inquiry HTTP/1.1
 
 ###
-# Step 2: Patient checks the detailed info of a slot by slot id:
-GET {{url}}/BookingInquiry
+# Patient checks the detailed info of a slot by slot id:
+# Note: Patient Bob Johnson can only view the slot after Dotor created the slot!
+GET {{url}}/booking-inquiry/get-doctor-time-slot-by-id
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2ODk5OTUwODgsImlzcyI6IkRvY3RvckFwcG9pbnRtZW50Qm9va2luZ19TZXJ2aWNlIiwiYXVkIjoiRG9jdG9yQXBwb2ludG1lbnRCb29raW5nX1NlcnZpY2UifQ.SWiEWF67D-9wdHnBJVOzK8OQg1R_ftVdtJMVlQYBEpY
 
 {
     "AppointmentId": "1ea96882-cc3a-433f-bf43-d1ee75fdfbb5",

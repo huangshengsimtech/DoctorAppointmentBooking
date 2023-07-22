@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace Booking.API.Controllers
 {
     [ApiController]
-    [Route("/Booking")]
+    [Route("/booking")]
 
     public class PatientAppointmentController : ControllerBase
     {
@@ -20,13 +20,15 @@ namespace Booking.API.Controllers
             _bookDoctorTimeSlotById = bookDoctorTimeSlotById;
             _logger = logger;
         }
+
+        [HttpGet]
         public IActionResult Get()
         {
             return Ok("Booking Module!");
         }
 
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> Post([FromBody] CreatePatientAppointmentRequest createPatientAppointmentRequest)
         {
             if (!ModelState.IsValid)
@@ -48,5 +50,4 @@ namespace Booking.API.Controllers
             return Ok("Patient Appointment Created...");
         }
     }
-
 }
