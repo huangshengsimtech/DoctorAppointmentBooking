@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorAppointmentBooking.Bo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{C10CB3B8-E310-4EEE-993C-CB4477F59EDB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BookingInquiry", "BookingInquiry", "{D6A4F19A-5187-474B-B933-7A3B4D9A56EE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ManagementInquiry", "ManagementInquiry", "{D6A4F19A-5187-474B-B933-7A3B4D9A56EE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notification", "Notification", "{E2DFA872-0E5C-4DB0-8D2C-0481F9F54DF3}"
 EndProject
@@ -29,13 +29,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Management.Application", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication.API", "Authentication.API\Authentication.API.csproj", "{02C50AB5-5F2A-4A6D-965E-751FC0B33E6D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingInquiry.API", "Booking.API\BookingInquiry.API.csproj", "{CF17046B-D8DF-4084-91F8-7F7A3B20D317}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagementInquiry.API", "Booking.API\ManagementInquiry.API.csproj", "{CF17046B-D8DF-4084-91F8-7F7A3B20D317}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedKernel", "SharedKernel", "{4B1F5BA2-9727-4B55-944C-9D3E44B0348C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel.Infrastructure", "SharedKernel.Infrastructure\SharedKernel.Infrastructure.csproj", "{13357E67-2DE7-42F9-ABFA-66933C4BA927}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingInquiry.Application", "Booking.Application\BookingInquiry.Application.csproj", "{30626CDC-8CFD-4327-BE95-451290387BDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagementInquiry.Application", "Booking.Application\ManagementInquiry.Application.csproj", "{30626CDC-8CFD-4327-BE95-451290387BDD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Booking", "PatientBooking\Booking.csproj", "{E3BF7438-3741-467F-B3B7-8E5DEA25B8E3}"
 EndProject
@@ -45,11 +45,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notification.Shared", "Noti
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Booking", "Booking", "{F6D37BF8-778B-4022-AF9A-5D36B6331348}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.Domain", "Notification.Domain\Notification.Domain.csproj", "{A04CE4E5-EC65-4434-B1DD-0724D5E564BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notification.Domain", "Notification.Domain\Notification.Domain.csproj", "{A04CE4E5-EC65-4434-B1DD-0724D5E564BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.Application", "Notification.Application\Notification.Application.csproj", "{FC83E37F-7E3C-4D19-9995-09D5BF4A8FC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notification.Application", "Notification.Application\Notification.Application.csproj", "{FC83E37F-7E3C-4D19-9995-09D5BF4A8FC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.Infrastructure", "Notification.Infrastructure\Notification.Infrastructure.csproj", "{4553DCD6-92F8-4524-BFE0-48B89477FBDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notification.Infrastructure", "Notification.Infrastructure\Notification.Infrastructure.csproj", "{4553DCD6-92F8-4524-BFE0-48B89477FBDB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ManagementLayered", "ManagementLayered", "{F93FCD53-8F2E-4A30-8F3C-8392DFAE9852}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorAppointmentBookingLayered", "DoctorAppointmentBookingLayered\DoctorAppointmentBookingLayered.csproj", "{9D7150CB-B4A8-4008-A28A-9E30731E4CF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -121,6 +125,10 @@ Global
 		{4553DCD6-92F8-4524-BFE0-48B89477FBDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4553DCD6-92F8-4524-BFE0-48B89477FBDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4553DCD6-92F8-4524-BFE0-48B89477FBDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D7150CB-B4A8-4008-A28A-9E30731E4CF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D7150CB-B4A8-4008-A28A-9E30731E4CF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D7150CB-B4A8-4008-A28A-9E30731E4CF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D7150CB-B4A8-4008-A28A-9E30731E4CF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -148,6 +156,8 @@ Global
 		{A04CE4E5-EC65-4434-B1DD-0724D5E564BB} = {E2DFA872-0E5C-4DB0-8D2C-0481F9F54DF3}
 		{FC83E37F-7E3C-4D19-9995-09D5BF4A8FC0} = {E2DFA872-0E5C-4DB0-8D2C-0481F9F54DF3}
 		{4553DCD6-92F8-4524-BFE0-48B89477FBDB} = {E2DFA872-0E5C-4DB0-8D2C-0481F9F54DF3}
+		{F93FCD53-8F2E-4A30-8F3C-8392DFAE9852} = {C10CB3B8-E310-4EEE-993C-CB4477F59EDB}
+		{9D7150CB-B4A8-4008-A28A-9E30731E4CF8} = {F93FCD53-8F2E-4A30-8F3C-8392DFAE9852}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {43489E1C-3A6A-4EE5-B83F-F71824695A72}
