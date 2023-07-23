@@ -1,7 +1,7 @@
 using Authentication.API;
 using Management.API;
+using ManagementInquiry.API;
 using Booking;
-using BookingInquiry.API;
 using Notification.API;
 using Serilog;
 using Microsoft.AspNetCore.HttpLogging;
@@ -26,10 +26,10 @@ namespace DoctorAppointmentBooking
 
             builder.Services
                 .AddAuthenticationModule(builder.Configuration)
+                .AddManagementModule()
+                .AddManagementInquiryModule()
                 .AddBookingModule()
-                .AddBookingInquiryModule()
-                .AddNotificationModule()
-                .AddManagementModule();
+                .AddNotificationModule();
 
             builder.Services.AddControllers();
 

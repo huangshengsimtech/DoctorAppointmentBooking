@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using BookingInquiry.Application.UseCases;
+using ManagementInquiry.Application.UseCases;
 
-namespace BookingInquiry.API
+namespace ManagementInquiry.API
 {
     public static class Extensions
     {
-        public static IServiceCollection AddBookingInquiryModule(this IServiceCollection services)
+        public static IServiceCollection AddManagementInquiryModule(this IServiceCollection services)
         {
             services.AddTransient<CheckDoctorTimeSlot>();
             return services;

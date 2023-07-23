@@ -67,12 +67,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iL
 
 ###
 # Booking Inquiry Module
-GET {{url}}/booking-inquiry HTTP/1.1
+GET {{url}}/management-inquiry HTTP/1.1
 
 ###
 # Patient checks the detailed info of a slot by slot id:
-# Note: Patient Bob Johnson can only view the slot after Dotor created the slot!
-GET {{url}}/booking-inquiry/get-doctor-time-slot-by-id
+# Note: Patient Bob Johnson can only view the slot after doctor created the slot!
+GET {{url}}/management-inquiry/get-doctor-time-slot-by-id
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2ODk5OTgwNTYsImlzcyI6IkRvY3RvckFwcG9pbnRtZW50Qm9va2luZ19TZXJ2aWNlIiwiYXVkIjoiRG9jdG9yQXBwb2ludG1lbnRCb29raW5nX1NlcnZpY2UifQ.8iwPVLCo43kM4jqsUPi5MTXwTIUMDq-swdJ8fp5ESzw
 

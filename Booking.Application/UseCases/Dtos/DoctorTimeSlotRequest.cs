@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BookingInquiry.Application.UseCases.Dtos
+namespace ManagementInquiry.Application.UseCases.Dtos
 {
     public class DoctorTimeSlotRequest
     {

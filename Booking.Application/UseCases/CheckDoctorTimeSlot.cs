@@ -1,7 +1,7 @@
 ﻿using Management.Shared;
-using BookingInquiry.Application.UseCases.Dtos;
+using ManagementInquiry.Application.UseCases.Dtos;
 
-namespace BookingInquiry.Application.UseCases
+namespace ManagementInquiry.Application.UseCases
 {
     public class CheckDoctorTimeSlot
     {

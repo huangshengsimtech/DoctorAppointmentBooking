@@ -1,12 +1,12 @@
-﻿using BookingInquiry.Application.UseCases;
-using BookingInquiry.Application.UseCases.Dtos;
+﻿using ManagementInquiry.Application.UseCases;
+using ManagementInquiry.Application.UseCases.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
-namespace BookingInquiry.API.Controllers
+namespace ManagementInquiry.API.Controllers
 {
     [ApiController]
-    [Route("/booking-inquiry")]
+    [Route("/management-inquiry")]
 
     public class DoctorTimeSlotController : ControllerBase
     {
@@ -20,7 +20,7 @@ namespace BookingInquiry.API.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok("BookingInquiry Module!");
+            return Ok("ManagementInquiry Module!");
         }
         [HttpGet("get-doctor-time-slot-by-id")]
         [Authorize]
