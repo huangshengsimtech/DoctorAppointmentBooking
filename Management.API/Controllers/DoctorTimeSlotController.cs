@@ -55,6 +55,7 @@ namespace Management.API.Controllers
         [HttpGet("get-time-slots-by-doctor-id/{doctorId}")]
         public async Task<IActionResult> GetTimeSlotsByDoctorId(Guid doctorId)
         {
+            _logger.LogInformation("Get timeslots by doctor ID: ${doctorId}", doctorId);
             var slots = await _getDoctorTimeSlot.Execute(doctorId);
             return Ok(slots);
         }
