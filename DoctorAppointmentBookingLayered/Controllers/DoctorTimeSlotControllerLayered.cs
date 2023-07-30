@@ -1,11 +1,12 @@
 ﻿using DoctorAppointmentBookingLayered.Entities;
 using DoctorAppointmentBookingLayered.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DoctorAppointmentBookingLayered.Controllers
 {
     [Controller]
-    [Route("/doctortimeslots")]
+    [Route("/management-layered")]
     public class DoctorTimeSlotControllerLayered : ControllerBase
     {
         private readonly IDoctorTimeSlotServiceLayered _doctorTimeSlotService;
@@ -20,7 +21,8 @@ namespace DoctorAppointmentBookingLayered.Controllers
             return Ok("DoctorAppointmentBookingLayered Module!");
         }
 
-        [HttpPost("create")]
+        [HttpPost("create-doctor-time-slot")]
+        [Authorize]
         public async Task<IActionResult> Post([FromBody] DoctorTimeSlotLayered doctorTimeSlot)
         {
             if (!ModelState.IsValid)
@@ -35,13 +37,13 @@ namespace DoctorAppointmentBookingLayered.Controllers
             await _doctorTimeSlotService.Create(doctorTimeSlot);
             return Ok("Doctor Time Slot Created..");
         }
-        [HttpGet("{doctorId}")]
+        [HttpGet("get-time-slots-by-doctor-id/{doctorId}")]
         public async Task<IActionResult> GetTimeSlotsByDoctorId(Guid doctorId)
         {
             var slots = await _doctorTimeSlotService.GetTimeSlotsByDoctorId(doctorId);
             return Ok(slots);
         }
-        [HttpGet("available")]
+        [HttpGet("get-doctor-available-time-slots")]
         public async Task<IActionResult> GetAvailableSlots()
         {
             var availableSlots = await _doctorTimeSlotService.GetAvailableTimeSlots();
