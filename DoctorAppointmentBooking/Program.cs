@@ -1,4 +1,5 @@
 using Authentication.API;
+using DoctorAppointmentBookingLayered;
 using Management.API;
 using ManagementInquiry.API;
 using Booking;
@@ -26,6 +27,7 @@ namespace DoctorAppointmentBooking
 
             builder.Services
                 .AddAuthenticationModule(builder.Configuration)
+                .AddDoctorAppointmentBookingLayeredModule()
                 .AddManagementModule()
                 .AddManagementInquiryModule()
                 .AddBookingModule()

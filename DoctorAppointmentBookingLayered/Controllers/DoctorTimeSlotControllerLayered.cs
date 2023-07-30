@@ -6,16 +6,22 @@ namespace DoctorAppointmentBookingLayered.Controllers
 {
     [Controller]
     [Route("/doctortimeslots")]
-    public class DoctorTimeSlotController : ControllerBase
+    public class DoctorTimeSlotControllerLayered : ControllerBase
     {
-        private readonly IDoctorTimeSlotService _doctorTimeSlotService;
+        private readonly IDoctorTimeSlotServiceLayered _doctorTimeSlotService;
 
-        public DoctorTimeSlotController(IDoctorTimeSlotService doctorTimeSlotService)
+        public DoctorTimeSlotControllerLayered(IDoctorTimeSlotServiceLayered doctorTimeSlotService)
         {
             _doctorTimeSlotService = doctorTimeSlotService;
         }
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok("DoctorAppointmentBookingLayered Module!");
+        }
+
         [HttpPost("create")]
-        public async Task<IActionResult> Post([FromBody] DoctorTimeSlot doctorTimeSlot)
+        public async Task<IActionResult> Post([FromBody] DoctorTimeSlotLayered doctorTimeSlot)
         {
             if (!ModelState.IsValid)
             {

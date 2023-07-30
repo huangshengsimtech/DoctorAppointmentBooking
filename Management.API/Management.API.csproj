@@ -7,13 +7,10 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.8" />
-	</ItemGroup>
-
-	<ItemGroup>
     <ProjectReference Include="..\Management.Application\Management.Application.csproj" />
     <ProjectReference Include="..\Management.Infrastructure\Management.Infrastructure.csproj" />
     <ProjectReference Include="..\Management.Shared\Management.Shared.csproj" />
+    <ProjectReference Include="..\SharedKernel.Infrastructure\SharedKernel.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

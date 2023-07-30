@@ -4,40 +4,40 @@ using DoctorAppointmentBookingLayered.Services.Exceptions;
 
 namespace DoctorAppointmentBookingLayered.Services
 {
-    public class DoctorTimeSlotService : IDoctorTimeSlotService
+    public class DoctorTimeSlotServiceLayered : IDoctorTimeSlotServiceLayered
     {
-        private readonly IDoctorTimeSlotRepository _doctorTimeSlotRepository;
+        private readonly IDoctorTimeSlotInMemoryRepoLayered _doctorTimeSlotRepository;
 
-        public DoctorTimeSlotService(IDoctorTimeSlotRepository doctorTimeSlotRepository)
+        public DoctorTimeSlotServiceLayered(IDoctorTimeSlotInMemoryRepoLayered doctorTimeSlotRepository)
         {
             _doctorTimeSlotRepository = doctorTimeSlotRepository;
         }
 
-        public async Task Create(DoctorTimeSlot doctorTimeSlot)
+        public async Task Create(DoctorTimeSlotLayered doctorTimeSlot)
         {
             if (string.IsNullOrEmpty(doctorTimeSlot.DoctorName))
             {
-                throw new DoctorNameException();
+                throw new DoctorNameExceptionLayered();
             }
 
             if (doctorTimeSlot.Cost <= 0)
             {
-                throw new DoctorTimeSlotCostException();
+                throw new DoctorTimeSlotCostExceptionLayered();
             }
             if (await _doctorTimeSlotRepository.DoesTimeSlotExist(doctorTimeSlot.Time))
             {
-                throw new DoctorTimeSlotException();
+                throw new DoctorTimeSlotExceptionLayered();
             }
 
             await _doctorTimeSlotRepository.Add(doctorTimeSlot);
         }
 
-        public async Task<List<DoctorTimeSlot>> GetTimeSlotsByDoctorId(Guid doctorId)
+        public async Task<List<DoctorTimeSlotLayered>> GetTimeSlotsByDoctorId(Guid doctorId)
         {
             return await _doctorTimeSlotRepository.GetByDoctorIdAsync(doctorId);
         }
 
-        public async Task<List<DoctorTimeSlot>> GetAvailableTimeSlots()
+        public async Task<List<DoctorTimeSlotLayered>> GetAvailableTimeSlots()
         {
             return await _doctorTimeSlotRepository.GetAvailableTimeSlotsAsync();
         }
