@@ -9,14 +9,14 @@ namespace Booking.Infrastructure.Repositories
     {
         private static readonly List<PatientAppointment> PatientAppointments = new();
 
-        private readonly ILogger<PatientAppointmentController> _logger;
-        public PatientAppointmentInMemoryRepo(ILogger<PatientAppointmentController> logger)
+        private readonly ILogger<PatientAppointmentInMemoryRepo> _logger;
+        public PatientAppointmentInMemoryRepo(ILogger<PatientAppointmentInMemoryRepo> logger)
         {
             _logger = logger;
         }
         public async Task Add(PatientAppointment patientAppointment)
         {
-            _logger.LogInformation("Appointment with ${PatientName} has added into database.", patientAppointment.PatientName);
+            _logger.LogInformation("(ILogger<PatientAppointmentInMemoryRepo> logger) Appointment with ${PatientName} has added into database.", patientAppointment.PatientName);
 
             PatientAppointments.Add(patientAppointment);
         }

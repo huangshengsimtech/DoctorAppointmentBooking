@@ -8,7 +8,7 @@ namespace Management.API.Services
         private readonly BookDoctorTimeSlot _bookDoctorTimeSlot;
         private readonly GetDoctorTimeSlotById _getDoctorTimeSlotById;
 
-        public ManagementModuleAPI(GetDoctorTimeSlotById getDoctorTimeSlotById, GetDoctorTimeSlot getDoctorTimeSlot, GetDoctorAvailableTimeSlots getDoctorAvailableTimeSlots, BookDoctorTimeSlot bookDoctorTimeSlot)
+        public ManagementModuleAPI(GetDoctorTimeSlotById getDoctorTimeSlotById, BookDoctorTimeSlot bookDoctorTimeSlot)
         {
             _bookDoctorTimeSlot = bookDoctorTimeSlot;
             _getDoctorTimeSlotById = getDoctorTimeSlotById;

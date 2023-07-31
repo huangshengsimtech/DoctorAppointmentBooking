@@ -47,7 +47,7 @@ GET {{url}}/management-layered/get-doctor-available-time-slots HTTP/1.1
 
 ###
 # Step 4: Patient Bob Johnson reserve one of Doctor John Smith's slot.
-# Step 4a: Update the selected slot "IsReserved" as true.
+# This step is only for testing the function of updating the selected slot "IsReserved" as true.
 PUT {{url}}/management-layered/314069e7-0e17-4b01-8fa3-467a8c7e53f1/reserve
 
 
@@ -73,21 +73,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iL
     "ReservedAt": "2023-01-31T09:00:00"
 }
 
-###
-# Booking Inquiry Module
-GET {{url}}/management-inquiry HTTP/1.1
-
-###
-# Patient checks the detailed info of a slot by slot id:
-# Note: Patient Bob Johnson can only view the slot after doctor created the slot!
-GET {{url}}/management-inquiry/get-doctor-time-slot-by-id
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2ODk5OTgwNTYsImlzcyI6IkRvY3RvckFwcG9pbnRtZW50Qm9va2luZ19TZXJ2aWNlIiwiYXVkIjoiRG9jdG9yQXBwb2ludG1lbnRCb29raW5nX1NlcnZpY2UifQ.8iwPVLCo43kM4jqsUPi5MTXwTIUMDq-swdJ8fp5ESzw
-
-{
-    "AppointmentId": "1ea96882-cc3a-433f-bf43-d1ee75fdfbb5",
-    "SlotId": "314069e7-0e17-4b01-8fa3-467a8c7e53f1"
-}
 
 ###
 #  Management Module
@@ -116,3 +101,18 @@ GET {{url}}/management/get-time-slots-by-doctor-id/d63b3de0-8bde-45f5-808b-73042
 #  Step 3: Patient Bob Johnson views all doctors' available (only) slots:
 GET {{url}}/management/get-doctor-available-time-slots HTTP/1.1
 
+###
+# Booking Inquiry Module
+GET {{url}}/management-inquiry HTTP/1.1
+
+###
+# Patient checks the detailed info of a slot by slot id:
+# Note: Patient Bob Johnson can only view the slot after doctor created the slot!
+GET {{url}}/management-inquiry/get-doctor-time-slot-by-id
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2ODk5OTgwNTYsImlzcyI6IkRvY3RvckFwcG9pbnRtZW50Qm9va2luZ19TZXJ2aWNlIiwiYXVkIjoiRG9jdG9yQXBwb2ludG1lbnRCb29raW5nX1NlcnZpY2UifQ.8iwPVLCo43kM4jqsUPi5MTXwTIUMDq-swdJ8fp5ESzw
+
+{
+    "AppointmentId": "1ea96882-cc3a-433f-bf43-d1ee75fdfbb5",
+    "SlotId": "314069e7-0e17-4b01-8fa3-467a8c7e53f2"
+}
