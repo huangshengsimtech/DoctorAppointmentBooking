@@ -22,6 +22,7 @@ GET {{url}}/management-layered HTTP/1.1
 
 ###
 # Layered Module: DoctorAppointmentBookingLayered
+# Step 1: Doctor John Smith creates a new time slot in DoctorTimeSlots database table:
 POST {{url}}/management-layered/create-doctor-time-slot
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2OTA3MzAwNzgsImlzcyI6IkRvY3RvckFwcG9pbnRtZW50Qm9va2luZ19TZXJ2aWNlIiwiYXVkIjoiRG9jdG9yQXBwb2ludG1lbnRCb29raW5nX1NlcnZpY2UifQ.Ye49CbFBqrVsaPib3Nte6fRarw6Dbat2_vb-JUVw130
@@ -35,40 +36,20 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iL
     "Cost": 100.0
 }
 
-###
-#  Management Module
-GET {{url}}/management HTTP/1.1
-
-###
-# Step 1: Doctor John Smith creates a new time slot in DoctorTimeSlots database table:
-POST {{url}}/management/create-doctor-time-slot
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2OTA3MzAxNjEsImlzcyI6IkRvY3RvckFwcG9pbnRtZW50Qm9va2luZ19TZXJ2aWNlIiwiYXVkIjoiRG9jdG9yQXBwb2ludG1lbnRCb29raW5nX1NlcnZpY2UifQ.zQR9BbK2KywZ2jGqt5TmwPTNxVKF37A_F3X8iIuvrQo
-
-{
-    "Id": "314069e7-0e17-4b01-8fa3-467a8c7e53f2",
-    "Time": "2023-02-25T16:30:00",
-    "DoctorId": "d63b3de0-8bde-45f5-808b-73042ee6bb0d",
-    "DoctorName": "John Smith",
-    "IsReserved": false,
-    "Cost": 200.0
-}
-
 ### 
 # Step 2: Doctor John Smith views his own time slots by doctor id:
 GET {{url}}/management-layered/get-time-slots-by-doctor-id/d63b3de0-8bde-45f5-808b-73042ee6bb0d
 
-### 
-# Step 2: Doctor John Smith views his own time slots by doctor id:
-GET {{url}}/management/get-time-slots-by-doctor-id/d63b3de0-8bde-45f5-808b-73042ee6bb0d
 
 ### 
 #  Step 3: Patient Bob Johnson views all doctors' available (only) slots:
 GET {{url}}/management-layered/get-doctor-available-time-slots HTTP/1.1
 
-### 
-#  Step 3: Patient Bob Johnson views all doctors' available (only) slots:
-GET {{url}}/management/get-doctor-available-time-slots HTTP/1.1
+###
+# Step 4: Patient Bob Johnson reserve one of Doctor John Smith's slot.
+# Step 4a: Update the selected slot "IsReserved" as true.
+PUT {{url}}/management-layered/314069e7-0e17-4b01-8fa3-467a8c7e53f1/reserve
+
 
 ### 
 #  Booking Module
@@ -108,4 +89,30 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iL
     "SlotId": "314069e7-0e17-4b01-8fa3-467a8c7e53f1"
 }
 
+###
+#  Management Module
+GET {{url}}/management HTTP/1.1
+
+###
+# Step 1: Doctor John Smith creates a new time slot in DoctorTimeSlots database table:
+POST {{url}}/management/create-doctor-time-slot
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJleHAiOjE2OTA3MzAxNjEsImlzcyI6IkRvY3RvckFwcG9pbnRtZW50Qm9va2luZ19TZXJ2aWNlIiwiYXVkIjoiRG9jdG9yQXBwb2ludG1lbnRCb29raW5nX1NlcnZpY2UifQ.zQR9BbK2KywZ2jGqt5TmwPTNxVKF37A_F3X8iIuvrQo
+
+{
+    "Id": "314069e7-0e17-4b01-8fa3-467a8c7e53f2",
+    "Time": "2023-02-25T16:30:00",
+    "DoctorId": "d63b3de0-8bde-45f5-808b-73042ee6bb0d",
+    "DoctorName": "John Smith",
+    "IsReserved": false,
+    "Cost": 200.0
+}
+
+### 
+# Step 2: Doctor John Smith views his own time slots by doctor id:
+GET {{url}}/management/get-time-slots-by-doctor-id/d63b3de0-8bde-45f5-808b-73042ee6bb0d
+
+### 
+#  Step 3: Patient Bob Johnson views all doctors' available (only) slots:
+GET {{url}}/management/get-doctor-available-time-slots HTTP/1.1
 

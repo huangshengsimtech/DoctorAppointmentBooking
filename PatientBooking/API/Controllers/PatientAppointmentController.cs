@@ -12,12 +12,17 @@ namespace Booking.API.Controllers
     public class PatientAppointmentController : ControllerBase
     {
         private readonly CreatePatientAppointment _createPatientAppointment;
-        private readonly BookDoctorTimeSlotById _bookDoctorTimeSlotById;
-        private readonly SendAppointmentConfirmationNotification _sendAppointmentConfirmationNotification;
+        //private readonly BookDoctorTimeSlotById _bookDoctorTimeSlotById;
+        //private readonly SendAppointmentConfirmationNotification _sendAppointmentConfirmationNotification;
+        private readonly BookDoctorTimeSlotByIdLayered _bookDoctorTimeSlotById;
+        private readonly SendAppointmentConfirmationNotificationLayered _sendAppointmentConfirmationNotification;
+
         private readonly ILogger<PatientAppointmentController> _logger;
         public PatientAppointmentController(CreatePatientAppointment createPatientAppointment, 
-                                            BookDoctorTimeSlotById bookDoctorTimeSlotById,
-                                            SendAppointmentConfirmationNotification sendAppointmentConfirmationNotification,
+                                            //BookDoctorTimeSlotById bookDoctorTimeSlotById,
+                                            //SendAppointmentConfirmationNotification sendAppointmentConfirmationNotification,
+                                            BookDoctorTimeSlotByIdLayered bookDoctorTimeSlotById,
+                                            SendAppointmentConfirmationNotificationLayered sendAppointmentConfirmationNotification,
                                             ILogger<PatientAppointmentController> logger)
         {
             _createPatientAppointment = createPatientAppointment;

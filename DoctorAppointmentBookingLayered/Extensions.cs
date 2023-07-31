@@ -1,5 +1,6 @@
 ﻿using DoctorAppointmentBookingLayered.Repositories;
 using DoctorAppointmentBookingLayered.Services;
+using DoctorAppointmentBookingLayered.Shared;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DoctorAppointmentBookingLayered
@@ -10,6 +11,7 @@ namespace DoctorAppointmentBookingLayered
         {
             services
                 .AddTransient<IDoctorTimeSlotInMemoryRepoLayered, DoctorTimeSlotInMemoryRepoLayered>()
+                .AddTransient<IManagementModuleAPILayered, ManagementModuleAPILayered>()
                 .AddTransient<IDoctorTimeSlotServiceLayered, DoctorTimeSlotServiceLayered>();
             return services;
         }

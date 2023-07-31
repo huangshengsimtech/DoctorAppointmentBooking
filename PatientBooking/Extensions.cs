@@ -11,9 +11,12 @@ namespace Booking
         {
             services
                 .AddTransient<BookDoctorTimeSlotById>()
+                .AddTransient<BookDoctorTimeSlotByIdLayered>()
                 .AddTransient<CreatePatientAppointment>()
                 .AddTransient<GetBookedDoctorTimeSlotById>()
+                .AddTransient<GetBookedDoctorTimeSlotByIdLayered>()
                 .AddTransient<SendAppointmentConfirmationNotification>()
+                .AddTransient<SendAppointmentConfirmationNotificationLayered>()
                 .AddTransient<IPatientAppointmentRepository, PatientAppointmentInMemoryRepo>();
             return services;
         }

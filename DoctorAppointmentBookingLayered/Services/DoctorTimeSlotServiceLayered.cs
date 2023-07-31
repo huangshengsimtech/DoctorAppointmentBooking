@@ -36,6 +36,10 @@ namespace DoctorAppointmentBookingLayered.Services
         {
             return await _doctorTimeSlotRepository.GetByDoctorIdAsync(doctorId);
         }
+        public async Task<DoctorTimeSlotLayered?> GetTimeSlotById(Guid Id)
+        {
+            return await _doctorTimeSlotRepository.GetById(Id);
+        }
 
         public async Task<List<DoctorTimeSlotLayered>> GetAvailableTimeSlots()
         {
