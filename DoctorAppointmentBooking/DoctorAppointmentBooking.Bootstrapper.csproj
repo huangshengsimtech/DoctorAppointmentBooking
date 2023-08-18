@@ -26,6 +26,7 @@
     <ProjectReference Include="..\Management.API\Management.API.csproj" />
     <ProjectReference Include="..\Notification.API\Notification.API.csproj" />
     <ProjectReference Include="..\PatientBooking\Booking.csproj" />
+    <ProjectReference Include="..\SharedKernel.Infrastructure\SharedKernel.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

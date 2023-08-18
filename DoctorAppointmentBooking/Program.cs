@@ -6,6 +6,8 @@ using Booking;
 using Notification.API;
 using Serilog;
 using Microsoft.AspNetCore.HttpLogging;
+using Convey.MessageBrokers.RabbitMQ;
+using Convey;
 
 namespace DoctorAppointmentBooking
 {
@@ -32,6 +34,8 @@ namespace DoctorAppointmentBooking
                 .AddManagementInquiryModule()
                 .AddBookingModule()
                 .AddNotificationModule();
+
+            builder.Services.AddConvey().AddRabbitMq();
 
             builder.Services.AddControllers();
 
