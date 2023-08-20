@@ -1,0 +1,12 @@
+﻿services:
+  rabbitmq:
+    image: "rabbitmq:3.12-management"
+    container_name: "rabbitmq_from_compose"
+    ports:
+      - 5672:5672
+      - 15672:15672
+  doctor-appointment-booking:
+    image: "doctor-appointment-booking:latest"
+    container_name: "doctor-appointment-booking_from_compose"
+    ports:
+      - 8080:80
