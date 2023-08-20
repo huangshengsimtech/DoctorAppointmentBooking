@@ -1,6 +1,8 @@
 ﻿using Management.API.Services;
 using Management.Application.UseCases;
+using Management.Application.Contracts;
 using Management.Domain.Contracts;
+using Management.Infrastructure;
 using Management.Infrastructure.Repositories;
 using Management.Shared;
 using Microsoft.AspNetCore.Builder;
@@ -19,6 +21,7 @@ namespace Management.API
                 .AddTransient<GetDoctorAvailableTimeSlots>()
                 .AddTransient<BookDoctorTimeSlot>()
                 .AddTransient<IManagementModuleAPI, ManagementModuleAPI>()
+                .AddTransient<ISlotPublisher, RabbitMQSlotPublisher>()
                 .AddTransient<IDoctorTimeSlotRepository, DoctorTimeSlotInMemoryRepo>();
             return services;
         }
