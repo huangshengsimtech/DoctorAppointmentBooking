@@ -1,8 +1,5 @@
 #See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-#Depending on the operating system of the host machines(s) that will build or run the containers, the image specified in the FROM statement may need to be changed.
-#For more information, please see https://aka.ms/containercompat
-
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
 EXPOSE 80
@@ -24,6 +21,7 @@ COPY ["Management.Infrastructure/Management.Infrastructure.csproj", "Management.
 COPY ["Notification.API/Notification.API.csproj", "Notification.API/"]
 COPY ["Notification.Application/Notification.Application.csproj", "Notification.Application/"]
 COPY ["Notification.Domain/Notification.Domain.csproj", "Notification.Domain/"]
+COPY ["Shared.Core/Shared.Core.csproj", "Shared.Core/"]
 COPY ["Notification.Infrastructure/Notification.Infrastructure.csproj", "Notification.Infrastructure/"]
 COPY ["Notification.Shared/Notification.Shared.csproj", "Notification.Shared/"]
 COPY ["PatientBooking/Booking.csproj", "PatientBooking/"]
