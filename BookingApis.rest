@@ -102,6 +102,11 @@ GET {{url}}/management/get-time-slots-by-doctor-id/d63b3de0-8bde-45f5-808b-73042
 GET {{url}}/management/get-doctor-available-time-slots HTTP/1.1
 
 ###
+# Step 4: Patient Bob Johnson reserve one of Doctor John Smith's slot.
+# This step is for testing RabbitMQ while updating the selected slot "IsReserved" as true.
+PUT {{url}}/management/314069e7-0e17-4b01-8fa3-467a8c7e53f1/reserve
+
+###
 # Booking Inquiry Module
 GET {{url}}/management-inquiry HTTP/1.1
 

@@ -1,5 +1,6 @@
 ﻿using Management.Application.Dtos;
 using Management.Application.UseCases;
+using Management.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -11,16 +12,19 @@ namespace Management.API.Controllers
     public class DoctorTimeSlotController : ControllerBase
     {
         private readonly CreateDoctorTimeSlot _createDoctorTimeSlot;
+        private readonly BookDoctorTimeSlot _bookDoctorTimeSlot;
         private readonly GetDoctorTimeSlot _getDoctorTimeSlot;
         private readonly GetDoctorAvailableTimeSlots _getDoctorAvailableTimeSlots;
         private readonly ILogger<DoctorTimeSlotController> _logger;
 
         public DoctorTimeSlotController(CreateDoctorTimeSlot createDoctorTimeSlot,
+                                        BookDoctorTimeSlot bookDoctorTimeSlot,
                                         GetDoctorTimeSlot getDoctorTimeSlot,
                                         GetDoctorAvailableTimeSlots getDoctorAvailableTimeSlots,
                                         ILogger<DoctorTimeSlotController> logger)
         {
             _createDoctorTimeSlot = createDoctorTimeSlot;
+            _bookDoctorTimeSlot = bookDoctorTimeSlot;
             _getDoctorTimeSlot = getDoctorTimeSlot;
             _getDoctorAvailableTimeSlots = getDoctorAvailableTimeSlots;
             _logger = logger;
@@ -64,6 +68,13 @@ namespace Management.API.Controllers
         {
             var availableSlots = await _getDoctorAvailableTimeSlots.Execute();
             return Ok(availableSlots);
+        }
+
+        [HttpPut("{id}/reserve")]
+        public async Task<IActionResult> Reserve(Guid id)
+        {
+            await _bookDoctorTimeSlot.Execute(id);
+            return Ok("Doctor Time Slot Reserved..");
         }
     }
 }
