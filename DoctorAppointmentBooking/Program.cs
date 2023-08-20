@@ -40,6 +40,8 @@ namespace DoctorAppointmentBooking
             builder.Services.AddControllers();
 
             var app = builder.Build();
+            app.UseNotificationModule();
+
             app.UseHttpLogging();
 
             Log.Information("Serilog started!");
