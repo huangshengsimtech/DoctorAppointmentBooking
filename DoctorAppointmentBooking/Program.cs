@@ -40,7 +40,7 @@ namespace DoctorAppointmentBooking
             builder.Services.AddControllers();
 
             var app = builder.Build();
-            app.UseNotificationModule();
+            //app.UseNotificationModule();
 
             app.UseHttpLogging();
 
